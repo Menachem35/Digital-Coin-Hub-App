@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-xl-12">
+		<h2>Digital Wallets</h2>
+	</div>
+</div>
+					
+<div class="row">
+	<div class="col-xl-12">
+		<div class="d-flex digital_wallet_container">
+			<div *ngFor="let digitalWalletLink of links" class="card digital_wallet_item" style="width: 20rem;">
+				<img class="card-img-top" src="{{digitalWalletLink.dchLinkImg}}" alt="Card image cap">
+				<div class="card-body">
+					<h4 class="card-title">{{digitalWalletLink.dchLinkTitle}}</h4>
+					<p class="card-text">{{digitalWalletLink.dchLinkDescription}}</p>
+					<a href="{{digitalWalletLink.dchLink}}" class="btn btn-primary" target="_blank">Get the wallet</a>
+				</div>
+			</div>
+		</div>	
+		
+	</div>
+</div>

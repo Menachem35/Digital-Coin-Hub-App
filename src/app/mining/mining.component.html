@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-xl-12">
+		<h3>{{ title }}</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+	
+		<div class="miningContainer">
+			<div *ngFor="let link of links" class="miningLinks">
+				<p>{{link.dchLinkTitle}}</p>
+				<a href="{{link.dchLink}}" target="_blank">{{link.dchLink}}</a>
+			</div>
+		</div>
+		
+		<ul>
+			<li *ngFor="let link of links">
+				<p>{{link.dchLinkTitle}}</p>
+				<a href="{{link.dchLink}}" target="_blank">{{link.dchLink}}</a>
+			</li>
+		</ul>
+		
+	</div>
+</div>
+

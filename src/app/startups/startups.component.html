@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-xl-12">
+		<h3>{{ title }}</h3>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-xl-6 leftSectionStartups">
+		Startups
+		<ul>
+			<li *ngFor="let startupsLinks of links">
+				<p>{{startupsLinks.dchLinkTitle}}</p>
+				<p>{{startupsLinks.dchLinkDescription}}</p>
+				<a href="{{startupsLinks.dchLink}}" target="_blank">{{startupsLinks.dchLink}}</a>
+			</li>
+			
+		</ul>
+		
+		
+	</div>
+	<div class="col-xl-6 rightSectionICO">
+	ICO
+		<ul>
+			<li *ngFor="let getICOlinks of icoLinks">
+				<p>{{getICOlinks.dchLinkTitle}}</p>
+				<p>{{getICOlinks.dchLinkDescription}}</p>
+				<a href="{{getICOlinks.dchLink}}" target="_blank">{{getICOlinks.dchLink}}</a>
+			</li>
+			
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,67 @@
+.headerBg{
+	 background: url(../../assets/images/crypto-currency-1823349_1920.jpg) no-repeat center center fixed;
+	
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	
+	height: 300px;
+}
+
+.headerCoinsRates {
+	background-color: rgba(56, 93, 127, 0.6);
+	height: 60px;
+}
+
+
+h1, h2 {
+	color: white;
+	font-weight: bold;
+}
+
+p {
+	color: white;
+}
+/*
+div#crypto-container {
+    background:white;
+    width: 70%;
+    margin: 0 auto 4px auto;
+    padding: 1em;
+    box-shadow: 1px 1px 0 lightgrey;
+  }
+  
+  span.left {
+    font-weight: bold;
+  }
+  
+  span.right {
+    float:right;
+  }
+  
+  */
+ 
+.cryptosRateContainer {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+  
+	flex-direction:row;
+}
+	
+div#crypto-container {
+    width: 10%;
+    margin: 0 auto 4px auto;
+    padding: 1em;
+  }
+  
+  span.left {
+    font-weight: bold;
+  }
+  
+  span.right {
+	margin-left: 10px;
+  }

@@ -1,0 +1,7 @@
+.digital_wallet_container {
+	flex-wrap: wrap; 
+}
+
+.digital_wallet_item {
+	margin: 10px;
+}

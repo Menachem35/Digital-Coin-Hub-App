@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-xl-12">
+		<h3>{{ title }}</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xl-4">	
+		<ul>
+			<li *ngFor="let digitalCoinsLinks of links">
+				{{digitalCoinsLinks.dchLinkTitle}}
+				<a href="{{digitalCoinsLinks.dchLink}}" target="_blank">{{digitalCoinsLinks.dchLink}}</a>
+				<br /><br />
+			</li>
+		</ul>
+	</div>
+	<div class="col-xl-4">
+		<ul *ngIf="cryptos">
+			<li id="crypto-container" *ngFor="let crypto of objectKeys(cryptos)">
+				<span class="left">{{ crypto }}</span>
+				<span class="right">{{ cryptos[crypto].USD | currency:'USD':true}}</span>
+				<br /><br />
+			</li>
+		</ul>
+	</div>
+</div>

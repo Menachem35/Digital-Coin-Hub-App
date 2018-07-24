@@ -1,0 +1,19 @@
+﻿בס"ד
+
+
+Menu:
+https://tympanus.net/codrops/2011/10/24/creative-css3-animation-menus/
+https://tympanus.net/Tutorials/CreativeCSS3AnimationMenus/index.html
+
+https://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/
+Building a Circular Navigation with CSS Transforms
+
+אייקונים חינם:
+https://www.iconfinder.com/
+
+Fonts / Icons:
+http://fontawesome.io
+https://fontawesome.com
+https://fontawesome.com/get-started/web-fonts-with-css
+https://www.fontsquirrel.com/fonts/web-symbols
+https://fonts2u.com/websymbols-regular.font

@@ -1,0 +1,40 @@
+.buy_sell_container {
+	margin: 0 auto;
+	max-width: 85%; 
+	min-height: 600px; 
+	border-left: 1px solid #EDEEEF;
+	/*background-color: orange;*/ 
+	
+	flex-wrap: wrap;
+}	
+
+.buy_sell_div {
+	width: 350px; 
+	height: 200px; 
+	padding: 30px;
+	overflow: hidden;
+	margin: 0;
+	/*background: #fff; 
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.2); */
+	border-right: 1px solid #EDEEEF;
+	border-bottom: 1px solid #EDEEEF;
+	
+}
+
+.buy_sell_div p {
+	opacity: 0;
+}
+.buy_sell_div:hover {
+	background-color: #B1D1ED;
+	height: 350px;
+	transition: all 0.82s ease-in-out;
+}
+
+.buy_sell_div:hover p {
+	opacity: 1;
+	 transition: all 0.82s ease-in-out;
+}
+
+ul {
+	list-style-type: none;
+}

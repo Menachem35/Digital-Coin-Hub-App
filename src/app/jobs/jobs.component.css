@@ -1,0 +1,26 @@
+.jobsLinksContainer {
+	display: -webkit-box;
+	 display: -moz-box;
+	 display: -ms-flexbox;
+	 display: -webkit-flex;
+	 display: flex;
+  
+     -webkit-flex-flow: row;
+     justify-content: space-around;
+	 flex-wrap: wrap;
+}
+
+.jobsLinksBox {
+	width: 400px;
+	height: 120px;
+	border: 3px solid black;
+	background-color: white;
+	box-shadow: 10px 10px;
+	margin: 20px; padding: 20px;
+}
+
+	.jobsLinksBox:hover {
+
+	border-color: blue;
+	box-shadow: 10px 10px blue;
+}

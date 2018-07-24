@@ -1,0 +1,14 @@
+.ethereumLinksBox {
+	width: 350px;
+	height: 250px;
+	border: 3px solid black;
+	background-color: white;
+	box-shadow: 10px 10px;
+	margin: 20px; padding: 20px;
+}
+
+	.ethereumLinksBox:hover {
+
+	border-color: blue;
+	box-shadow: 10px 10px blue;
+}

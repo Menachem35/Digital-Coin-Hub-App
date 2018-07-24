@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-xl-12">
+		<h3>{{ title }}</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-12" style="background-color: #FFF;">
+		
+		<div class="d-flex buy_sell_container">
+			<div *ngFor="let buySellBCLinks of links" class="buy_sell_div">
+				<img src="" />
+				
+				{{buySellBCLinks.dchLinkTitle}}
+				<br />
+				<a href="{{buySellBCLinks.dchLink}}" target="_blank">{{buySellBCLinks.dchLink}}</a>
+				<p>{{buySellBCLinks.dchLinkDescription}}</p>
+			</div>
+		</div>
+		
+		<ul>
+			<li *ngFor="let buySellBCLinks of links">
+				{{buySellBCLinks.dchLinkTitle}}
+				<br />
+				<a href="{{buySellBCLinks.dchLink}}" target="_blank">{{buySellBCLinks.dchLink}}</a>
+				<p>{{buySellBCLinks.dchLinkDescription}}</p>
+				
+			</li>
+		</ul>
+		
+	</div>
+</div>
+
+<!-- Advertising -->
+<banner-wide></banner-wide> <!-- banner wide has already row and col -->
+<!-- ************* -->
+
+ 

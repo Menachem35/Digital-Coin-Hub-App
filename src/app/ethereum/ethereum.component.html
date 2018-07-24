@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-xl-12">
+		<h3>{{ title }}</h3>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-xl-12">
+		
+		<div *ngFor="let ethereumLink of links" class="ethereumLinksBox">
+			{{ethereumLink.dchLinkTitle}}
+				<br />
+				<a href="{{ethereumLink.dchLink}}" target="_blank">{{ethereumLink.dchLink}}</a>
+				<p>{{ethereumLink.dchLinkDescription}}</p>
+		</div>
+		<ul>
+			<li *ngFor="let ethereumLink of links">
+				{{ethereumLink.dchLinkTitle}}
+				<br />
+				<a href="{{ethereumLink.dchLink}}" target="_blank">{{ethereumLink.dchLink}}</a>
+				<p>{{ethereumLink.dchLinkDescription}}</p>
+			</li>
+		</ul>
+		
+	</div>
+</div>
+
+<!-- Advertising -->
+<banner-wide></banner-wide> <!-- banner wide has already row and col -->
+<!-- ************* -->
+
+<div class="row">
+	<div class="col-xl-12">
+		<p>Website by</p><a href="http://www.glikdesign.com" target="_blank">Glik Design</a>
+	</div>
+</div>

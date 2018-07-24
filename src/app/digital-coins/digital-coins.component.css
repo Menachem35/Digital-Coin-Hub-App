@@ -1,0 +1,21 @@
+.row {
+	background: #EAEAEA;
+}
+li {
+	width: 95%;
+	height: 10%;
+	background-color: #fff;
+	list-style: none;
+	margin: 12px auto;
+	padding: 10px;
+	
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+}
+	li:hover {
+		-webkit-box-shadow: 0 10px 6px -6px #7171E2;
+		   -moz-box-shadow: 0 10px 6px -6px #7171E2;
+				box-shadow: 0 10px 6px -6px #7171E2;
+		background-color: #DCDCE5;
+	}

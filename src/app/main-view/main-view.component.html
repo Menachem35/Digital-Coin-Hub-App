@@ -1,0 +1,92 @@
+<!-- Header -->
+<div class="row">
+	<div class="col-xl-12 headerCoinsRates">
+		<div *ngIf="cryptos" class="cryptosRateContainer">
+			<div id="crypto-container" *ngFor="let crypto of objectKeys(cryptos)">
+				<span class="left">{{ crypto }}</span>
+				<span class="right">{{ cryptos[crypto].USD | currency:'USD':true}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--
+<div class="row">
+	<div class="col-xl-12">
+		<div *ngIf="cryptos">
+			<div id="crypto-container" *ngFor="let crypto of objectKeys(cryptos)">
+				<span class="left">{{ crypto }}</span>
+				<span class="right">{{ cryptos[crypto].USD | currency:'USD':true}}</span>
+			</div>
+		</div>
+	</div>
+</div> -->
+<!-- ********* -->
+
+
+<div class="row">
+	<div class="col-xl-12 headerBg">
+		<h1>{{ title }}</h1>
+	</div>
+</div>
+
+<div class="row" style="height: 300px; background-color: #2E9DF7; padding: 5% 15% 10% 15%;">
+	<div class="col-xl-12">
+		<h2>Digital Coin Hub is information source about Cryptocurrencies, Blockchain, and more</h2>
+		<p>
+			Digital Coin Hub is the place where you can find all the information you need about cryptocurrencies, 
+			Blockchain, new startups, ICO's, Jobs, where and how to mine, news sources, and more. 
+		</p>		
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xl-6" style="background-color:#BDDFFF; height: 250px;">
+		Left
+	</div>
+	<div class="col-xl-6" style="background-color:#73DFFF">
+		Right
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xl-12" style="height: 450px; background-color: white;">
+	</div>
+</div>
+<div class="row" style="background-color:#6A6EEC">
+	<div class="col-xl-12">
+		
+
+		
+		<h2>Advertising networks</h2>
+		<br />
+		<a href="https://bitmedia.io" target="_blank">https://bitmedia.io</a>
+		<br /><br />
+		
+		<h2>Social media networks: </h2>
+		<br />
+		<a href="https://steem.io" target="_blank">https://steem.io</a>
+		<br />
+		<a href="http://www.coinsns.com" target="_blank">http://www.coinsns.com</a>
+		<br />
+		<a href="http://www.paymeabit.com" target="_blank">http://www.paymeabit.com</a>
+		<br />
+		<a href="https://bitconnect.co" target="_blank">https://bitconnect.co</a>
+		<br />
+		<a href="https://www.etoro.com/" target="_blank">https://www.etoro.com/</a>
+		
+		<br /><br />
+		<p>blockchain based Financial Investment Banking Platform</p>
+		<a href="https://blockhaus.io" target="_blank">https://blockhaus.io</a>
+	</div>
+</div>
+
+<!-- Advertising -->
+<banner-wide></banner-wide> <!-- banner wide has already row and col -->
+<!-- ************* -->
+
+<div class="row">
+	<div class="col-xl-12">
+		<p>Website by</p><a href="http://www.glikdesign.com" target="_blank">Glik Design</a>
+	</div>
+</div>

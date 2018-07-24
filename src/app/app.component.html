@@ -1,20 +1,145 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="main-container">
+
+	<!-- Mobile Bar & Menu Icon -->
+	<input type="checkbox" class="menu-toggle" id="menu-toggle">
+	<div class="mobile-bar">
+		<label for="menu-toggle" class="menu-icon">
+			<span></span>
+		</label>
+	</div>
+	<!--  ********** -->
+	
+	<div class="sideMenu">
+		<div>
+			<img class="img-fluid sidebarIcon" src="../assets/images/Bitcoin.png" width="100px" />
+		</div>
+		 
+		<nav> 
+		
+			<!-- **** -->
+			<ul class="ca-menu">
+				<li>
+					<a routerLink="/main">
+						<span class="ca-icon fas fa-desktop" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Main</p>
+							
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/buy-sell">
+						<span class="ca-icon fab fa-btc" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Buy / Sell cryptocurrencies</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/digital-wallet">
+						<span class="ca-icon far fa-money-bill-alt" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Digital Wallet</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/jobs">
+						<span class="ca-icon fas fa-briefcase" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Jobs</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/digital-coins">
+						<span class="ca-icon fas fa-list" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Digital Coins list</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/mining">
+						<span class="ca-icon fas fa-industry" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Mining</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/startups">
+						<span class="ca-icon fas fa-coffee" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Startups | ICO</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/ethereum">
+						<span class="ca-icon fab fa-ethereum" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Ethereum</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/news">
+						<span class="ca-icon fas fa-newspaper" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">News</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/buy-with-digital-coin">
+						<span class="ca-icon fas fa-shopping-cart" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Buy with Digital Coins</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a routerLink="/investment">
+						<span class="ca-icon fas fa-chart-line" aria-hidden="true"></span>
+						<div class="ca-content">
+							<p class="ca-main">Investment</p>
+							 
+							<p class="ca-sub">Personalized to your needs</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<!-- **** -->
+			
+		</nav>
+		
+	</div><!-- sideMenu -->
+	
+	<div class="content_area">
+		<div class="container-fluid">
+			 <router-outlet></router-outlet>		
+		</div>
+	</div><!-- content_area -->
+	
+</div><!-- main-container -->
 

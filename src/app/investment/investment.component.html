@@ -1,0 +1,12 @@
+<h3>{{title}}</h3>
+<div class="investmentContainer">
+	<div *ngFor="let investmentLinks of links" class="investmentLinks">
+		
+	
+		{{investmentLinks.dchLinkTitle}}
+		<br />
+		<p>{{investmentLinks.dchLinkDescription}}</p>
+		
+		<a href="{{investmentLinks.dchLink}}" target="_blank">{{investmentLinks.dchLink}}</a>
+	</div>
+</div>

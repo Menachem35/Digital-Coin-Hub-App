@@ -1,0 +1,23 @@
+.leftSectionStartups {
+	background-color: #EFD7BD;
+}
+
+.rightSectionICO {
+	background-color: #F2EBE3;
+}
+
+li {
+	background-color: #D6D1FF;
+	width: 80%;
+	height: 10%;
+	margin: 10px auto;
+	padding: 20px;
+	list-style: none;
+	
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+	li:hover {
+		background-color: #B7BDFF;
+	}

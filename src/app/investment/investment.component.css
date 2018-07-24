@@ -1,0 +1,40 @@
+li {
+	display: inline;
+	
+}
+
+.investmentContainer {
+	 display: -webkit-box;
+	 display: -moz-box;
+	 display: -ms-flexbox;
+	 display: -webkit-flex;
+	 display: flex;
+  
+     -webkit-flex-flow: row;
+     justify-content: space-around;
+	 flex-wrap: wrap;
+}
+
+.investmentLinks {
+	width: 390px;
+	height: 280px;
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: 1px 1px 2px #e4e4eb;
+	margin: 5px; padding :10px;
+}
+	.investmentLinks:hover {
+		box-shadow: 2px 2px 20px 12px #EAEAEA;
+	}
+
+.investmentContainer {
+	 display: -webkit-box;
+	 display: -moz-box;
+	 display: -ms-flexbox;
+	 display: -webkit-flex;
+	 display: flex;
+  
+     -webkit-flex-flow: row;
+     justify-content: space-around;
+	 flex-wrap: wrap;
+}
