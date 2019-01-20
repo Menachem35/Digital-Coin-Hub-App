@@ -312,6 +312,12 @@ li:hover .ca-sub {
   transform: translate3d(70%, 0, 0);
 }
 
+.menu-toggle:checked ~ .sideMenu {
+	display: block;
+	-webkit-transform: translateX(-10%);
+    transform: translateX(-10%);
+	width: 550px;
+}
  
 /* **************** */
 
@@ -343,7 +349,7 @@ li:hover .ca-sub {
 
 
 @media (max-width: 890px) {
-	nav ul {display: none;}
+	.sideMenu {display: none;}
 }
 /* ***** End Responsive Navigation ******* */
 
