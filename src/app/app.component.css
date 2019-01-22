@@ -304,7 +304,8 @@ li:hover .ca-sub {
 /**---- Off-Canvas Effect ----**/
 
 .menu-toggle:checked ~ nav ul { /* Once the mobile menu clicked - push the sidebar menu */
-	display: block;
+	display: block; 
+	background-color: #21374B;
 	width: 78%;
 	-webkit-transform: translateX(-10%);
 	transform: translateX(-10%);
@@ -350,6 +351,23 @@ li:hover .ca-sub {
 @media (max-width: 820px) {
 	nav ul {display: none;}
 	
+	.main-container {
+		flex-direction: column;
+	}
+	
+	nav {
+		width: 100%;
+		background-color: #21374B;
+		height: 80px;
+	}
+
+	.content_area {
+		width: 100%;
+		padding: 0px;
+		background-color: #586473;
+		min-height: 400px;
+	}
+		
 }
 /* ***** End Responsive Navigation ******* */
 
@@ -380,43 +398,14 @@ and (max-width : 320px) {
 
 /* --- Extra small devices portrait phones, less than 544px --- */
 @media (max-width: 543px) {
-	.main-container {
-		flex-direction: column;
-	}
 	
-	nav {
-		width: 100%;
-		background-color: #21374B;
-		height: 80px;
-	}
-
-	.content_area {
-		width: 100%;
-		background-color: #586473;
-		min-height: 400px;
-	}
 	
 	
 }
 
 /* --- Small devices (landscape phones, 544px and up) --- */
 @media (min-width: 544px) and (max-width: 767px) {
-	.main-container {
-		flex-direction: column;
-
-	}
 	
-	nav {
-		width: 100%;
-		background-color: blue;
-		height: 80px;
-	}
-
-	.content_area {
-		width: 100%;
-		background-color: green;
-		min-height: 400px;
-	}
 }
 
 
