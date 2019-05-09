@@ -6,7 +6,7 @@ import { DigitalCoinHubService } from '../digital-coin-hub.service';
 @Component({
 	selector: 'investment',
 	templateUrl: './investment.component.html',
-	styleUrls: ['./investment.component.css']
+	styleUrls: ['./investment.component.scss']
 })
 
 

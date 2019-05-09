@@ -7,7 +7,7 @@ import { DataDisplayFromAPI } from '../data-display-from-api.service';
 @Component ({
 	selector: 'digital-coins',
 	templateUrl: 'digital-coins.component.html',
-	styleUrls: ['./digital-coins.component.css']
+	styleUrls: ['./digital-coins.component.scss']
 })
 
 export class DigitalCoinsComponent implements OnInit {

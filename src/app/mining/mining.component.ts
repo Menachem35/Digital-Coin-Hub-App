@@ -6,7 +6,7 @@ import { DigitalCoinHubService } from '../digital-coin-hub.service';
 @Component({
   selector: 'app-mining',
   templateUrl: './mining.component.html',
-  styleUrls: ['./mining.component.css']
+  styleUrls: ['./mining.component.scss']
 })
 export class MiningComponent implements OnInit {
 

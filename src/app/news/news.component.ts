@@ -6,7 +6,7 @@ import { DigitalCoinHubService } from '../digital-coin-hub.service';
 @Component ({
 	selector: 'news',
 	templateUrl: './news.component.html',
-	styleUrls: ['./news.component.css']
+	styleUrls: ['./news.component.scss']
 })
 
 export class NewsComponent implements OnInit {

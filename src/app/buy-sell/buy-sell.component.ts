@@ -6,7 +6,7 @@ import { DigitalCoinHubService } from '../digital-coin-hub.service';
 @Component ({
 	selector: 'buy-sell',
 	templateUrl: './buy-sell.component.html', 
-	styleUrls: ['./buy-sell.component.css']
+	styleUrls: ['./buy-sell.component.scss']
 })
 
 export class BuySellBitcoinComponent implements OnInit {

@@ -6,7 +6,7 @@ import { DigitalCoinHubService } from '../digital-coin-hub.service';
 @Component({
 	selector: 'ethereum-section',
 	templateUrl: './ethereum.component.html',
-	styleUrls: ['./ethereum.component.css']
+	styleUrls: ['./ethereum.component.scss']
 })
 
 export class EthereumComponent implements OnInit {

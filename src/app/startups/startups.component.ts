@@ -6,7 +6,7 @@ import { DigitalCoinHubService } from '../digital-coin-hub.service';
 @Component({
 	selector: 'startups',
 	templateUrl: './startups.component.html',
-	styleUrls: ['./startups.component.css']
+	styleUrls: ['./startups.component.scss']
 })
 
 export class StartupsComponent implements OnInit {
