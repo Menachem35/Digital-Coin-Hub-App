@@ -27,8 +27,20 @@ export class MainViewComponent implements OnInit {
 				this.cryptos = res;
 		});
 		
-		this.x.getIntradayData().subscribe(a => console.log(a));
+		this.x.getIntradayData().subscribe(a => {
+			//console.log(a);
+			console.log(a["Meta Data"]["2. Symbol"]);
+			//console.log(a["Time Series (5min)"]);
+		});
+		this.x.getDailyData().subscribe(a => {
+			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
+			//console.log(a["Meta Data"]["1. Information"]);
+			//console.log(a["Time Series (Daily)"]);
+			//console.log(Object.keys(a["Time Series (Daily)"])[Object.keys(a["Time Series (Daily)"]).length-1]);
+			console.log(a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"]);
+		});
 	}
+ 
 	
 }
 	
