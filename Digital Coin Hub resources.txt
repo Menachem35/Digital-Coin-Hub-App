@@ -20,3 +20,11 @@ https://fontawesome.com
 https://fontawesome.com/get-started/web-fonts-with-css
 https://www.fontsquirrel.com/fonts/web-symbols
 https://fonts2u.com/websymbols-regular.font
+
+API's:
+https://alpaca.markets/
+
+https://www.alphavantage.co/
+DRGGM1B76NVM7H6W
+
+https://min-api.cryptocompare.com/
