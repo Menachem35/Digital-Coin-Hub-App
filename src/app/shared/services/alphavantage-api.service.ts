@@ -15,8 +15,8 @@ export class AlphavantageApiService {
   
   private x: any[];
   
-  private intradayUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&outputsize=compact&symbol=FB&interval=5min&apikey=DRGGM1B76NVM7H6W';
-  private dailyUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=MSFT&outputsize=full&apikey=DRGGM1B76NVM7H6W';
+  private intradayUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&outputsize=compact&symbol=GOOGL&interval=5min&apikey=DRGGM1B76NVM7H6W';
+  private dailyUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=GOOGL&outputsize=full&apikey=DRGGM1B76NVM7H6W';
   
   getIntradayData(): Observable<any[]> {
 	  return this._http.get<any[]>(this.intradayUrl);//.map(a => this.x = a);

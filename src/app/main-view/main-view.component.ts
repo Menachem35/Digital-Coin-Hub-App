@@ -20,6 +20,8 @@ export class MainViewComponent implements OnInit {
 	) {}
 	
 	title = 'Digital Coin Hub';
+	public stockSymbol: string = '';
+	public stock: string = '';
 	
 	ngOnInit () {
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,LTC,BCH,IOT,XRP,XVG,FCT')
@@ -31,6 +33,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(a);
 			console.log(a["Meta Data"]["2. Symbol"]);
 			//console.log(a["Time Series (5min)"]);
+			this.stockSymbol = a["Meta Data"]["2. Symbol"];
 		});
 		this.x.getDailyData().subscribe(a => {
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
@@ -38,6 +41,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(a["Time Series (Daily)"]);
 			//console.log(Object.keys(a["Time Series (Daily)"])[Object.keys(a["Time Series (Daily)"]).length-1]);
 			console.log(a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"]);
+			this.stock = a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"];
 		});
 	}
  
