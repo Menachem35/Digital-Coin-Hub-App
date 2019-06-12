@@ -1,0 +1,35 @@
+﻿בס"ד
+
+API's:
+
+https://www.quandl.com/tools/api
+https://developer.tradier.com/
+
+https://iexcloud.io/ - cost money
+https://intrinio.com/ - cost money
+https://financialmodelingprep.com/developer/docs/
+https://www.stockmarketclock.com - cost money
+https://socket.io/
+http://www.usfundamentals.com/
+
+https://stocknewsapi.com/
+https://stocknewsapi.com/pricing
+
+
+https://connect.spotware.com/docs/api-reference/trading-api
+https://developer.tradestation.com/webapi
+https://dev.last10k.com/
+
+https://developer.etrade.com/home
+https://www.worldtradingdata.com/pricing
+
+https://unibit.ai/docs
+https://www.hooksdata.io/
+
+https://polygon.io/ - cost money
+
+
+https://www.barchart.com/ondemand/api
+https://developer.yahoo.com/api/
+
+https://rapidapi.com/category/Finance
