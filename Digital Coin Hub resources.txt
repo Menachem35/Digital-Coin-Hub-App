@@ -28,3 +28,6 @@ https://www.alphavantage.co/
 DRGGM1B76NVM7H6W
 
 https://min-api.cryptocompare.com/
+
+https://evenfinancial.com
+https://developers.evenfinancial.com/
