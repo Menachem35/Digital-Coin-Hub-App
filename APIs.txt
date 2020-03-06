@@ -39,3 +39,6 @@ https://rapidapi.com/category/Finance
 https://docs.coincap.io
 CoinCap API 2.0
 seems to be free
+
+https://alpaca.markets/
+Xt67j8$rt^vt/
