@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // import the HTTP library to make our API calls
 
@@ -41,6 +43,8 @@ import { BannerWideComponent } from './banner-wide/banner-wide.component';
     BrowserModule,
 	AppRoutingModule,
 	HttpClientModule,
+	FormsModule,
+	ReactiveFormsModule
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],
   bootstrap: [AppComponent]

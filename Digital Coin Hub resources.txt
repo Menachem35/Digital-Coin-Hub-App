@@ -31,3 +31,6 @@ https://min-api.cryptocompare.com/
 
 https://evenfinancial.com
 https://developers.evenfinancial.com/
+
+Reactive Forms:
+https://coursetro.com/posts/code/66/Angular-4-Reactive-Forms-Tutorial

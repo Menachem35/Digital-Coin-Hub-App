@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { stockSymbol } from '../constants';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +26,16 @@ export class AlphavantageApiService {
   
   getDailyData(): Observable<any[]> {
 	  return this._http.get<any[]>(this.dailyUrl);
+  }
+
+  searchStock(symbol: string): Observable<any[]> {
+    let getStockName: string;
+    if (stockSymbol.hasOwnProperty(symbol.toLowerCase())) {
+      getStockName = stockSymbol[symbol.toLowerCase()];
+    } else  {
+      getStockName = symbol;
+    }
+    return this._http.get<any[]>(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=${getStockName}&outputsize=full&apikey=DRGGM1B76NVM7H6W`);
   }
   
 }

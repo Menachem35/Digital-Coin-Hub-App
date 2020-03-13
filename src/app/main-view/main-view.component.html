@@ -17,6 +17,20 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="col-xl-4">
+		<form [formGroup]="getStockForm">
+			<label>Search stock:
+				<input type="text" formControlName="stockName">
+			</label>
+			<button type="button" (click)="searchStock()">search</button>
+		</form>
+	</div>
+	<div class="col-xl-4">
+		{{stockFromSearch}}
+	</div>
+</div>
+
 <!--
 <div class="row">
 	<div class="col-xl-12">
