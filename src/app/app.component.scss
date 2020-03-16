@@ -369,6 +369,29 @@ li:hover .ca-sub {
 	}
 		
 }
+
+.socialIcons {
+    display: -webkit-box;
+	 display: -moz-box;
+	 display: -ms-flexbox;
+	 display: -webkit-flex;
+	 display: flex;
+  
+     -webkit-flex-flow: row;
+     justify-content: space-around;
+	 flex-wrap: wrap;
+}
+
+.socialIcon {
+    width: 22px;
+    height: 22px;
+}
+
+.socialIconContianer {
+    width: 30px;
+    margin: 0;
+    padding: 0;
+}
 /* ***** End Responsive Navigation ******* */
 
 .content_area {

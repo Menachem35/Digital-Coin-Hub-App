@@ -29,15 +29,16 @@ export class MainViewComponent implements OnInit {
 	public stockFromSearch: string = ''; // Return the searched stock
 
 	columnDefs = [
-        {headerName: 'Make', field: 'make' },
-        {headerName: 'Model', field: 'model' },
+        {headerName: 'Stock', field: 'stock' },
+        {headerName: 'Symbol', field: 'symbol' },
         {headerName: 'Price', field: 'price'}
     ];
 
     rowData = [
-        { make: 'Toyota', model: 'Celica', price: 35000 },
-        { make: 'Ford', model: 'Mondeo', price: 32000 },
-        { make: 'Porsche', model: 'Boxter', price: 72000 }
+        { stock: 'Google', symbol: 'GOOGL', price: ''  },
+        { stock: 'Apple', symbol: 'AAPL', price: '' },
+		{ stock: 'Microsoft', symbol: 'MSFT', price: '' },
+		{ stock: 'Tesla', symbol: 'TSLA', price: '' }
     ];
 
 	buildStokForm(): void {
