@@ -28,6 +28,18 @@ export class MainViewComponent implements OnInit {
 	public stock: string = '';
 	public stockFromSearch: string = ''; // Return the searched stock
 
+	columnDefs = [
+        {headerName: 'Make', field: 'make' },
+        {headerName: 'Model', field: 'model' },
+        {headerName: 'Price', field: 'price'}
+    ];
+
+    rowData = [
+        { make: 'Toyota', model: 'Celica', price: 35000 },
+        { make: 'Ford', model: 'Mondeo', price: 32000 },
+        { make: 'Porsche', model: 'Boxter', price: 72000 }
+    ];
+
 	buildStokForm(): void {
 		this.getStockForm = this.fb.group({
 			'stockName': [null]

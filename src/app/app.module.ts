@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http'; // import the HTTP libr
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AgGridModule } from 'ag-grid-angular';
+
 import { DigitalCoinHubService } from './digital-coin-hub.service';
 import { DataDisplayFromAPI } from './data-display-from-api.service';
 
@@ -44,7 +46,8 @@ import { BannerWideComponent } from './banner-wide/banner-wide.component';
 	AppRoutingModule,
 	HttpClientModule,
 	FormsModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	AgGridModule.withComponents([])
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],
   bootstrap: [AppComponent]

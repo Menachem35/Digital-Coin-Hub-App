@@ -10,27 +10,6 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-xl-12">
-		<p style="color: black;">Stocks:</p>
-		<p style="color: black;">Google: {{stockSymbol}}. {{stock}}</p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xl-4">
-		<form [formGroup]="getStockForm">
-			<label>Search stock:
-				<input type="text" formControlName="stockName">
-			</label>
-			<button type="button" (click)="searchStock()">search</button>
-		</form>
-	</div>
-	<div class="col-xl-4">
-		{{stockFromSearch}}
-	</div>
-</div>
-
 <!--
 <div class="row">
 	<div class="col-xl-12">
@@ -62,18 +41,47 @@
 </div>
 
 <div class="row">
-	<div class="col-xl-6" style="background-color:#BDDFFF; height: 250px;">
-		Left
+	<div class="col-xl-6" style="background-color:#BDDFFF; height: 250px; padding: 50px;">
+		<h3 class="text-center">Get information about Cryptocurrencies and Blockchain</h3>
 	</div>
-	<div class="col-xl-6" style="background-color:#73DFFF">
-		Right
+	<div class="col-xl-6" style="background-color:#73DFFF; padding: 50px;">
+		<h3 class="text-center">Find news sources, jobs, and more</h3>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-xl-12" style="height: 450px; background-color: white;">
+	<div class="col-xl-12">
+		<p style="color: black;">Popular Stocks:</p>
+		<p style="color: black;">Google: {{stockSymbol}}. {{stock}}</p>
 	</div>
 </div>
+
+<div class="row">
+	<div class="col-xl-4">
+		<form [formGroup]="getStockForm">
+			<label>Search stock:
+				<input type="text" formControlName="stockName">
+			</label>
+			<button type="button" (click)="searchStock()">search</button>
+		</form>
+	</div>
+	<div class="col-xl-4">
+		{{stockFromSearch}}
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<ag-grid-angular
+    		style="width: 500px; height: 500px;"
+    		class="ag-theme-balham"
+    		[rowData]="rowData"
+    		[columnDefs]="columnDefs"
+    	>
+		</ag-grid-angular>
+	</div>
+</div>
+
 <div class="row" style="background-color:#6A6EEC">
 	<div class="col-xl-12">
 		

@@ -1,5 +1,6 @@
 export const stockSymbol: any = {
     'google': 'GOOGL',
     'microsoft': 'MSFT',
-    'apple': 'AAPL'
+    'apple': 'AAPL',
+    'tesla': 'TSLA'
 };
