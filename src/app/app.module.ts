@@ -24,6 +24,7 @@ import { NewsComponent } from './news/news.component';
 import { BuyWithDigitalCoinComponent } from './buy-with/buy-with.component';
 import { InvestmentComponent } from './investment/investment.component';
 import { BannerWideComponent } from './banner-wide/banner-wide.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BannerWideComponent } from './banner-wide/banner-wide.component';
 	HttpClientModule,
 	FormsModule,
 	ReactiveFormsModule,
-	AgGridModule.withComponents([])
+	AgGridModule.withComponents([]),
+	BrowserAnimationsModule
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],
   bootstrap: [AppComponent]

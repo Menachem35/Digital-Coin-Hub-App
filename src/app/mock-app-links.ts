@@ -477,7 +477,8 @@ export const APP_LINKS: DCHlinks[] = [
 	// ****************  Digital Coins ********************
 	{ 
 		dchLink: 'https://bitcoin.org/en/' , 
-		dchLinkTitle: 'BitCoin', 
+		dchLinkTitle: 'BitCoin',
+		dchCoynSymbol: 'BTC',
 		dchLinkDescription: '', 
 		dchLinkCategoryTitle: '',
 		dchLinkImg: '',
@@ -486,6 +487,7 @@ export const APP_LINKS: DCHlinks[] = [
 	{ 
 		dchLink: 'https://ethereum.org' , 
 		dchLinkTitle: 'Ethereum', 
+		dchCoynSymbol: 'ETH',
 		dchLinkDescription: '', 
 		dchLinkCategoryTitle: '',
 		dchLinkImg: '',
@@ -493,7 +495,8 @@ export const APP_LINKS: DCHlinks[] = [
 	},
 	{ 
 		dchLink: 'https://getmonero.org' , 
-		dchLinkTitle: 'MONERO', 
+		dchLinkTitle: 'MONERO',
+		dchCoynSymbol: 'XMR',
 		dchLinkDescription: '', 
 		dchLinkCategoryTitle: '',
 		dchLinkImg: '',
