@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { AlphavantageApiService } from '../shared/services/alphavantage-api.service';
 
+import { stockSymbol } from '../shared/constants'; 
+
 import { OverlaySpinnerComponent } from '../shared/overlay-spinner/overlay-spinner.component';
 
 @Component({
@@ -38,17 +40,20 @@ export class MainViewComponent implements OnInit {
 	public stockFromSearch: string = ''; // Return the searched stock
 
 	columnDefs = [
-        {headerName: 'Stock', field: 'stock' },
-        {headerName: 'Symbol', field: 'symbol' },
-        {headerName: 'Price', field: 'price'}
+        {headerName: 'Stock', field: 'stock', width: 150 },
+        {headerName: 'Symbol', field: 'symbol', width: 150 },
+        {headerName: 'Price', field: 'price', width: 100}
     ];
 
-    rowData = [
+    rowData = Object.keys(stockSymbol).map(x => {
+		return {stock: [x], symbol: stockSymbol[x], price:''}
+	});
+	/*[
         { stock: 'Google', symbol: 'GOOGL', price: ''  },
         { stock: 'Apple', symbol: 'AAPL', price: '' },
 		{ stock: 'Microsoft', symbol: 'MSFT', price: '' },
 		{ stock: 'Tesla', symbol: 'TSLA', price: '' }
-    ];
+    ];*/
 
 	buildStokForm(): void {
 		this.getStockForm = this.fb.group({
@@ -67,8 +72,11 @@ export class MainViewComponent implements OnInit {
 		});
 
 		this.x.searchStock(this.getStockForm.value.stockName).subscribe(data => {
-			if (data[0] === "Stock didn't found") {
-				this.subject.next(true);
+			if (/*data[0] === "Stock was not found"*/Array.isArray(data)) {
+				setTimeout(() => {
+					this.subject.next(true);
+				}, 1000);
+				
 				this.stockFromSearch = data[0];
 			} else {
 				this.subject.next(true);

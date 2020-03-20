@@ -40,7 +40,7 @@ export class AlphavantageApiService {
       });*/
 
       // Other way
-      const $observable = of(["Stock didn't found"]);
+      const $observable = of(["Stock was not found"]);
 
       //return observable;
       return $observable;
