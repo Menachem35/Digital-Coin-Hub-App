@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { stockSymbol } from '../constants';
@@ -30,10 +30,20 @@ export class AlphavantageApiService {
 
   searchStock(symbol: string): Observable<any[]> {
     let getStockName: string;
+    
     if (stockSymbol.hasOwnProperty(symbol.toLowerCase())) {
       getStockName = stockSymbol[symbol.toLowerCase()];
     } else  {
-      getStockName = symbol;
+      // One way of doing it
+      /*let observable = Observable.create(observer => {
+        observer.next(["Stock didn't found"]);
+      });*/
+
+      // Other way
+      const $observable = of(["Stock didn't found"]);
+
+      //return observable;
+      return $observable;
     }
     return this._http.get<any[]>(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=${getStockName}&outputsize=full&apikey=DRGGM1B76NVM7H6W`);
   }

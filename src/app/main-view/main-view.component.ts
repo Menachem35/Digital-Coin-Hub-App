@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Subject, Observable } from 'rxjs';
+
+import { MatDialog } from '@angular/material/dialog';
+
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { AlphavantageApiService } from '../shared/services/alphavantage-api.service';
+
+import { OverlaySpinnerComponent } from '../shared/overlay-spinner/overlay-spinner.component';
 
 @Component({
 	selector: 'main-view',
@@ -18,10 +24,13 @@ export class MainViewComponent implements OnInit {
 	constructor (
 		private fb: FormBuilder,
 		private coinsRateCryptoCompare: DataDisplayFromAPI,
-		private x: AlphavantageApiService
+		private x: AlphavantageApiService,
+		public dialog: MatDialog
 	) {}
 
 	public getStockForm: FormGroup;
+
+	private subject = new Subject<boolean>(); // When get data from API close modal
 	
 	title = 'Digital Coin Hub';
 	public stockSymbol: string = '';
@@ -48,12 +57,34 @@ export class MainViewComponent implements OnInit {
 	}
 
 	searchStock(): void {
-		this.x.searchStock(this.getStockForm.value.stockName).subscribe(data => {
-			this.stockFromSearch = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+		// Open spinner
+		this.dialog.open(OverlaySpinnerComponent, {
+			data: {
+			  gotData: this.gotSearchedStock()
+			},
+			height: '400px',
+  			width: '600px'
 		});
+
+		this.x.searchStock(this.getStockForm.value.stockName).subscribe(data => {
+			if (data[0] === "Stock didn't found") {
+				this.subject.next(true);
+				this.stockFromSearch = data[0];
+			} else {
+				this.subject.next(true);
+				this.stockFromSearch = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+			}
+		}, error => {
+			console.log(error);
+		});
+	}
+
+	gotSearchedStock(): Observable<boolean> {
+		return this.subject.asObservable();
 	}
 	
 	ngOnInit () {
+		this.subject.next(false); // Didn't get yet data from API
 		this.buildStokForm();
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,LTC,BCH,IOT,XRP,XVG,FCT')
 			.subscribe(res => {

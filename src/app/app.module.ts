@@ -26,10 +26,13 @@ import { BuyWithDigitalCoinComponent } from './buy-with/buy-with.component';
 import { InvestmentComponent } from './investment/investment.component';
 import { BannerWideComponent } from './banner-wide/banner-wide.component';
 
+import { OverlaySpinnerComponent } from './shared/overlay-spinner/overlay-spinner.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular Material modules
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 	BuyWithDigitalCoinComponent, 
 	InvestmentComponent,
 	BannerWideComponent,
-	CoinIdComponent
+	CoinIdComponent,
+	OverlaySpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 	AgGridModule.withComponents([CoinIdComponent]),
 	BrowserAnimationsModule,
 	// Angular Material modules
-	MatDialogModule
+	MatDialogModule,
+	MatProgressSpinnerModule
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
