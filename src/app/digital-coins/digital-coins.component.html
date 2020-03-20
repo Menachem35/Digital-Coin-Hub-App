@@ -30,7 +30,10 @@
     		style="width: 450px; height: 200px; margin: 2px 0 30px 55px;"
     		class="ag-theme-balham"
     		[rowData]="rowData"
-    		[columnDefs]="columnDefs">
+			[columnDefs]="columnDefs"
+			[frameworkComponents]="frameworkComponents"
+			(gridReady)="onGridReady($event)">
 		</ag-grid-angular>
 	</div>
 </div>
+<button type="button" (click)="openDialog()" >Click</button>

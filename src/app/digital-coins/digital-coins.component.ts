@@ -4,6 +4,10 @@ import { DCHlinks } from '../links'; //DCHlinks class
 import { DigitalCoinHubService } from '../digital-coin-hub.service';
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 
+import { CoinIdComponent } from './coin-id/coin-id.component';
+
+import { from } from 'rxjs';
+
 @Component ({
 	selector: 'digital-coins',
 	templateUrl: 'digital-coins.component.html',
@@ -12,12 +16,19 @@ import { DataDisplayFromAPI } from '../data-display-from-api.service';
 
 export class DigitalCoinsComponent implements OnInit {
 	
-	constructor(private appLinksService: DigitalCoinHubService, private coinsRateFromService: DataDisplayFromAPI) { }
+	constructor(
+		private appLinksService: DigitalCoinHubService, 
+		private coinsRateFromService: DataDisplayFromAPI
+	) { }
 	
 	title = 'Digital Coins';
 
 	public columnDefs: object[];
 	public rowData: any[];
+	public frameworkComponents;
+
+	private gridApi: any;
+  	private gridColumnApi: any;
 	
 	objectKeys = Object.keys; // Get data from API through service 
     cryptos: any; // Get data from API through service
@@ -32,14 +43,36 @@ export class DigitalCoinsComponent implements OnInit {
 
 	setGrid(): void {
 		this.columnDefs = [
-			{headerName: 'Coin', field: 'coin', width: 100},
-			{headerName: 'Price (USD)', field: 'priceInUSD', width: 100},
+			{
+				headerName: 'Coin', 
+				field: 'coin',				
+				width: 100},
+			{
+				headerName: 'Price (USD)',
+				field: 'priceInUSD',
+				sortable: true,
+				width: 100
+			},
+			{
+				headerName:'',
+				cellRenderer: 'coinId',
+				width: 100	
+			},
 			{
 				headerName: '', 
 				field: 'link',
 				cellRenderer: (params: any) =>`<a href="${params.value}" target="_blank">${params.value}</a>`
 			}
 		];
+
+		this.frameworkComponents = {
+			coinId: CoinIdComponent
+		};
+	}
+
+	onGridReady(params: any) {
+		this.gridApi = params.api;
+		this.gridColumnApi = params.columnApi;
 	}
   
 	ngOnInit() {
@@ -53,7 +86,8 @@ export class DigitalCoinsComponent implements OnInit {
 						coin: [x], 
 						priceInUSD: res[x]["USD"],
 						link: this.links[index].dchCoynSymbol === x ? this.links[index].dchLink: ''
-					}));
+					}
+				));
 			});
 	}
 }
