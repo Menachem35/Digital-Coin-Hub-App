@@ -59,21 +59,31 @@
 <div class="row">
 	<div class="col-xl-4">
 		<form [formGroup]="getStockForm">
-			<label>Search stock:
+			<label>Search stock by company name:
 				<input type="text" formControlName="stockName">
 			</label>
-			<button type="button" (click)="searchStock()">search</button>
+			<button mat-raised-button color="primary" (click)="searchStock('byCompany')">search</button>
 		</form>
 	</div>
+
 	<div class="col-xl-4">
-		{{stockFromSearch}}
+		<form [formGroup]="getStockForm">
+			<label>Search stock by symbol:
+				<input type="text" formControlName="stockSymbol">
+			</label>
+			<button mat-raised-button color="primary" (click)="searchStock('bySymbol')">search</button>
+		</form>
+	</div>
+
+	<div class="col-xl-1">
+		{{stockFromSearch.symbol | uppercase}}: {{stockFromSearch.value}}
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-12">
 		<ag-grid-angular
-    		style="width: 500px; height: 200px;"
+    		style="width: 500px; height: 200px; margin: 40px 0 45px 0;"
     		class="ag-theme-balham"
     		[rowData]="rowData"
     		[columnDefs]="columnDefs"

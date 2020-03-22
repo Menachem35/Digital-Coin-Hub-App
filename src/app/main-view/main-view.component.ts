@@ -37,7 +37,10 @@ export class MainViewComponent implements OnInit {
 	title = 'Digital Coin Hub';
 	public stockSymbol: string = '';
 	public stock: string = '';
-	public stockFromSearch: string = ''; // Return the searched stock
+	public stockFromSearch: any = {
+		symbol: '',
+		value: ''
+	}; // Return the searched stock
 
 	columnDefs = [
         {headerName: 'Stock', field: 'stock', width: 150 },
@@ -57,11 +60,16 @@ export class MainViewComponent implements OnInit {
 
 	buildStokForm(): void {
 		this.getStockForm = this.fb.group({
-			'stockName': [null]
+			'stockName': [null],
+			'stockSymbol': [null]
 		});
 	}
 
-	searchStock(): void {
+	/**
+	 * 
+	 * @param searchType search by company name - 'byCompany', or by stock symbol ('bySymbol').
+	 */
+	searchStock(searchType: string): void {
 		// Open spinner
 		this.dialog.open(OverlaySpinnerComponent, {
 			data: {
@@ -71,16 +79,25 @@ export class MainViewComponent implements OnInit {
   			width: '600px'
 		});
 
-		this.x.searchStock(this.getStockForm.value.stockName).subscribe(data => {
+		let searchBy: string; // Stock name or stock symbol
+
+		if (searchType === 'bySymbol') {
+			searchBy = this.getStockForm.value.stockSymbol;
+		} else if (searchType === 'byCompany') {
+			searchBy = this.getStockForm.value.stockName;
+		}
+
+		this.x.searchStock(searchBy, searchType).subscribe(data => {
 			if (/*data[0] === "Stock was not found"*/Array.isArray(data)) {
 				setTimeout(() => {
 					this.subject.next(true);
 				}, 1000);
 				
-				this.stockFromSearch = data[0];
+				this.stockFromSearch.value = data[0];
 			} else {
 				this.subject.next(true);
-				this.stockFromSearch = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+				this.stockFromSearch.symbol = data["Meta Data"]["2. Symbol"];
+				this.stockFromSearch.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
 			}
 		}, error => {
 			console.log(error);

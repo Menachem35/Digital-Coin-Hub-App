@@ -31,7 +31,9 @@ import { OverlaySpinnerComponent } from './shared/overlay-spinner/overlay-spinne
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular Material modules
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -61,7 +63,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 	AgGridModule.withComponents([CoinIdComponent]),
 	BrowserAnimationsModule,
 	// Angular Material modules
+	MatButtonModule,
 	MatDialogModule,
+	MatInputModule,
 	MatProgressSpinnerModule
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],

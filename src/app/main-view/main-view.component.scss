@@ -23,6 +23,14 @@ h1, h2 {
 p {
 	color: white;
 }
+
+input {
+  border: 3px solid rgb(190, 177, 221);
+  border-radius: 5px;
+  height: 36px;
+  margin-right: 5px;
+  padding-left: 10px;
+}
 /*
 div#crypto-container {
     background:white;

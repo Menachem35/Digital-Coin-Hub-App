@@ -28,12 +28,19 @@ export class AlphavantageApiService {
 	  return this._http.get<any[]>(this.dailyUrl);
   }
 
-  searchStock(symbol: string): Observable<any[]> {
+  /**
+   * 
+   * @param symbol searched item from homepage
+   * @param searchBy company name or stock
+   */
+  searchStock(symbol: string, searchBy: string): Observable<any[]> {
     let getStockName: string;
-    
-    if (stockSymbol.hasOwnProperty(symbol.toLowerCase())) {
+    let url: string;
+
+    // Return (from constants - stockSymbol) stock symbol for given stock name, when searched by stock name
+    if (searchBy === 'byCompany' && stockSymbol.hasOwnProperty(symbol.toLowerCase())) {
       getStockName = stockSymbol[symbol.toLowerCase()];
-    } else  {
+    } else if (searchBy === 'byCompany' && !stockSymbol.hasOwnProperty(symbol.toLowerCase())) {
       // One way of doing it
       /*let observable = Observable.create(observer => {
         observer.next(["Stock didn't found"]);
@@ -45,7 +52,14 @@ export class AlphavantageApiService {
       //return observable;
       return $observable;
     }
-    return this._http.get<any[]>(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=${getStockName}&outputsize=full&apikey=DRGGM1B76NVM7H6W`);
+
+    if (searchBy === 'byCompany') {
+      url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=${getStockName}&outputsize=full&apikey=DRGGM1B76NVM7H6W`;
+    } else if (searchBy === 'bySymbol') {
+      url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=${symbol}&outputsize=full&apikey=DRGGM1B76NVM7H6W`;
+    }
+
+    return this._http.get<any[]>(url);
   }
   
 }
