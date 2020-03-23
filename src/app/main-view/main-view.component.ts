@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, from } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { AlphavantageApiService } from '../shared/services/alphavantage-api.service';
+import { StackexchangeApiService } from '../shared/services/stackexchange-api.service';
 
 import { stockSymbol } from '../shared/constants'; 
 
@@ -27,6 +28,7 @@ export class MainViewComponent implements OnInit {
 		private fb: FormBuilder,
 		private coinsRateCryptoCompare: DataDisplayFromAPI,
 		private x: AlphavantageApiService,
+		private stackExchangeService: StackexchangeApiService,
 		public dialog: MatDialog
 	) {}
 
@@ -106,6 +108,15 @@ export class MainViewComponent implements OnInit {
 
 	gotSearchedStock(): Observable<boolean> {
 		return this.subject.asObservable();
+	}
+
+	/**
+	 * Get latest answers about blockchain / crypto
+	 */
+	getStackExchangeQuestions(): void {
+		this.stackExchangeService.getStackexchangeAnswers().subscribe(data => {
+			console.log(data);
+		});
 	}
 	
 	ngOnInit () {
