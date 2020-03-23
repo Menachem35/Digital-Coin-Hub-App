@@ -14,10 +14,14 @@ export class StackexchangeApiService {
   // API docs:
   // https://api.stackexchange.com/docs
 
+  private baseUrl: string = 'https://api.stackexchange.com/2.2/';
+
   constructor(private _http: HttpClient) { }
 
   getStackexchangeAnswers(): Observable<any[]> {
-
-    return this._http.get<any[]>('https://api.stackexchange.com/docs/questions#fromdate=2020-03-02&todate=2020-03-22&order=desc&sort=activity&tagged=angular&filter=default&site=stackoverflow');
+    let requestUrl: string = 'search?order=desc&sort=creation&tagged=bitcoin; blockchain&site=stackoverflow';
+    //'/2.2/search?order=desc&sort=creation&tagged=bitcoin; blockchain&site=stackoverflow';
+    
+    return this._http.get<any[]>(this.baseUrl + requestUrl);
   }
 }

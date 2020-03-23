@@ -92,6 +92,23 @@
 	</div>
 </div>
 
+<!-- Latest questions from stackexchange -->
+<div class="row" style="background-color: rgb(220, 238, 255);">
+	<div class="col-12">
+		<h3>Latest questions about Bitcoin / Blockchain from stackexchange</h3>
+	</div>
+</div>
+<div class="row" style="background-color: rgb(220, 238, 255);">
+	<div class="col-12">
+		<div class="questionWrapper" *ngFor="let question of questionsFromStackExchange">
+			{{question.title}}
+			<br />
+			<a href="{{question.link}}" target="_blank">{{question.link}}</a>
+		</div>
+	</div>
+</div>
+<!-- *********************************** -->
+
 <div class="row" style="background-color:#6A6EEC">
 	<div class="col-xl-12">
 		

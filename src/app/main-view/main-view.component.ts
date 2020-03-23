@@ -44,6 +44,8 @@ export class MainViewComponent implements OnInit {
 		value: ''
 	}; // Return the searched stock
 
+	public questionsFromStackExchange: any[]; // Array to hold response from stackexchange API
+
 	columnDefs = [
         {headerName: 'Stock', field: 'stock', width: 150 },
         {headerName: 'Symbol', field: 'symbol', width: 150 },
@@ -115,11 +117,13 @@ export class MainViewComponent implements OnInit {
 	 */
 	getStackExchangeQuestions(): void {
 		this.stackExchangeService.getStackexchangeAnswers().subscribe(data => {
-			console.log(data);
+			this.questionsFromStackExchange = data['items'].slice(0, 10);
+			//console.log(data);
+			console.log(data['items']);
 		});
 	}
 	
-	ngOnInit () {
+	ngOnInit () {this.getStackExchangeQuestions();
 		this.subject.next(false); // Didn't get yet data from API
 		this.buildStokForm();
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,LTC,BCH,IOT,XRP,XVG,FCT')
