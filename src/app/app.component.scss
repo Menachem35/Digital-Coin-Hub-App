@@ -323,28 +323,37 @@ li:hover .ca-sub {
 
 /* **************** */
 
+@media screen 
+  and (min-device-width: 821px) 
+  and (max-device-width: 1500px)  {
+      nav {
+          width: 20%;
+      }
+      .content_area {
+          width: 80%;
+      }
+}
+
 /**---- Viewport >= 820px ----**/
 
 @media (min-width: 820px) {
 	.menu-toggle:checked  {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 
-  .menu-toggle:checked  {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+    .menu-toggle:checked  {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 	
 	.mobile-bar {
 		display: none;
 	}
-	 
-  
 }
 
 
@@ -352,7 +361,7 @@ li:hover .ca-sub {
 	nav ul {display: none;}
 	
 	.main-container {
-		flex-direction: column;
+        flex-direction: column;
 	}
 	
 	nav {
@@ -363,7 +372,8 @@ li:hover .ca-sub {
 
 	.content_area {
 		width: 100%;
-		padding: 0px;
+        padding: 0px;
+        margin: 0;
 		background-color: #586473;
 		min-height: 400px;
 	}
@@ -396,7 +406,7 @@ li:hover .ca-sub {
 /* ***** End Responsive Navigation ******* */
 
 .content_area {
-	width: 90%; 
+	width: 100%; 
 	/*background-color: #FFFFFF;*/
 	background-color: #F9F9F9;
 	padding: 0px;
