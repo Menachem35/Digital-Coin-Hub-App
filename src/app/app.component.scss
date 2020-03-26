@@ -432,14 +432,27 @@ and (max-width : 320px) {
 
 /* --- Extra small devices portrait phones, less than 544px --- */
 @media (max-width: 543px) {
-	
-	
+	.sidebarIcon {
+        width: 50px;
+        margin: 10px 0 10px 55px;
+    }
+    
+    .socialIcon {
+        display: none;
+    }
 	
 }
 
 /* --- Small devices (landscape phones, 544px and up) --- */
 @media (min-width: 544px) and (max-width: 767px) {
-	
+	.sidebarIcon {
+        width: 65px;
+        margin: 10px 0 10px 65px;
+    }
+
+    .socialIcon {
+        display: none;
+    }
 }
 
 

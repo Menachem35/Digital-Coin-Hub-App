@@ -31,27 +31,10 @@ input {
   margin-right: 5px;
   padding-left: 10px;
 }
-/*
-div#crypto-container {
-    background:white;
-    width: 70%;
-    margin: 0 auto 4px auto;
-    padding: 1em;
-    box-shadow: 1px 1px 0 lightgrey;
-  }
-  
-  span.left {
-    font-weight: bold;
-  }
-  
-  span.right {
-    float:right;
-  }
-  
-  */
 
 .questionWrapper {
-  width: 600px;
+  width: 30%;
+  display: block;
   background-color: rgb(211, 226, 243);
   margin: 10px 0 10px 0;
   padding: 10px;
@@ -60,6 +43,9 @@ div#crypto-container {
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
+  .questionWrapper a {
+    overflow-wrap: break-word;
+  }
  
 .cryptosRateContainer {
 	display: -webkit-box;
@@ -70,17 +56,41 @@ div#crypto-container {
   
 	flex-direction:row;
 }
-	
-div#crypto-container {
-    width: 10%;
-    margin: 0 auto 4px auto;
-    padding: 1em;
-  }
+
+#crypto-container {
+  display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+  
+  flex-direction:row;
+  
+  width: 10%;
+  margin: 0 auto 4px auto;
+  padding: 1em;
+}
   
   span.left {
     font-weight: bold;
   }
   
   span.right {
-	margin-left: 10px;
+	  margin-left: 10px;
   }
+
+
+@media (max-width: 750px) {
+  #crypto-container {
+    flex-direction: column;
+  }
+
+  .questionWrapper {
+    width: 90%;
+  }
+
+  span.right {
+    margin-left: 0;
+  }
+	
+}
