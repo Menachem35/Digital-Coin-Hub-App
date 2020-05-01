@@ -35,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DisplayExchangeRatesComponent } from './display-exchange-rates/display-exchange-rates.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 	InvestmentComponent,
 	BannerWideComponent,
 	CoinIdComponent,
-	OverlaySpinnerComponent
+	OverlaySpinnerComponent,
+	DisplayExchangeRatesComponent
   ],
   imports: [
     BrowserModule,

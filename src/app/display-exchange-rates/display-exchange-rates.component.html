@@ -1,0 +1,40 @@
+<div class="main-container">
+    <div class="pairs-container" *ngFor="let coins of coinsPair; index as i">
+      <div class="pairsHeader">
+        <div class="redRightArrow">></div>
+        <div>
+          <select class="coinsDropDown"
+                  (change)="setSelectedCurrencies($event)"> <!-- [(ngModel)]="selectedCoinsPair" -->
+          <!-- let coinsSymbols of coins.coins -->
+            <option *ngFor="let currenciesSymbols of coins.coins">{{currenciesSymbols}}</option>
+          </select>
+        </div>
+        <div class="removeCoinsPair" (click)="removeItem(i)">
+          <span>x</span>
+        </div>
+      </div>
+      
+      <div class="bidOfferContainer">
+        <!-- Bid container (left) -->
+        <div>
+          <p class="bidOfferButton">Bid</p>
+          <p class="bidValue">
+            <!--{{ bidPrice | priceStyling }}--> 
+            123
+          </p>
+        </div>
+
+        <!-- Offer container (right) -->
+        <div>
+          <p class="bidOfferButton">Offer</p>
+          <p class="offerValue">
+             456
+        </div>
+      </div>
+    </div>
+
+    <!-- Green plus button -->
+    <div class="addCoinsPair">
+      <p (click)="addCoinsPair()">+</p>
+    </div>
+  </div>
