@@ -16,6 +16,9 @@ export class DisplayExchangeRatesComponent implements OnInit {
   // Holds currencies exchange rates
   private currenciesRates: any[];
 
+  // Get the response from API
+  private baseUSD: any;
+
   private currenciesPairs: string[] = ['EUR/USD', 'EUR/GBP', 'USD/CAD', 'AUD/CAD', 'USD/JPY'];
 
   public coinsPairs: any[] = [
@@ -44,6 +47,10 @@ export class DisplayExchangeRatesComponent implements OnInit {
   setSelectedCurrencies($event, index): void {
     //this.selectedCoinsPair = $event.target.options[$event.target.options.selectedIndex].text;
     this.coinsPairs[index].currentCoin = $event.target.value;
+    this.coinsPairs[index].currency1.symbol = $event.target.value.substr(0, 3);
+    this.coinsPairs[index].currency1.price = (this.baseUSD[$event.target.value.substr(0, 3)]).toFixed(2);
+    this.coinsPairs[index].currency2.symbol = $event.target.value.substr(4, 3);
+    this.coinsPairs[index].currency2.price = (this.baseUSD[$event.target.value.substr(4, 3)]).toFixed(2);
   }
 
   /**
@@ -69,9 +76,8 @@ export class DisplayExchangeRatesComponent implements OnInit {
 	 * Get FOREX rates from API
 	 */
 	getCurrenciesRates(): void {
-    let baseUSD: any;
 		this.exhangeRateService.getExchangeRates('USD').subscribe(data => {console.log('data is:', data);
-      baseUSD = data.rates;
+      this.baseUSD = data.rates;
       this.currenciesRates = Object.keys(data.rates).map(x => {
         return {[x]: data.rates[x]/*.toFixed(2)*/}
       });
@@ -82,11 +88,11 @@ export class DisplayExchangeRatesComponent implements OnInit {
             'currentCoin': this.currenciesPairs[index],
             'currency1': {
                 symbol: this.currenciesPairs[index].substr(0, 3),
-                price: (baseUSD[this.currenciesPairs[index].substr(0, 3)]).toFixed(2)
+                price: (this.baseUSD[this.currenciesPairs[index].substr(0, 3)]).toFixed(2)
             },
             'currency2': {
                 symbol: this.currenciesPairs[index].substr(4,3),
-                price: (baseUSD[this.currenciesPairs[index].substr(4, 3)]).toFixed(2)
+                price: (this.baseUSD[this.currenciesPairs[index].substr(4, 3)]).toFixed(2)
             },
             'x':x
           };
