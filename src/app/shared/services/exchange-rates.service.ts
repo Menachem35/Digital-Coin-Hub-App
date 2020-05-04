@@ -21,4 +21,13 @@ export class ExchangeRatesService {
 
     return this._http.get<any>(this.exchangeAatesApiEndPoint + `latest?base=${base}`);
   }
+
+  /**
+   * Get pairs exchange rate
+   * @param coin1
+   * @param coin2 
+   */
+  getExchangeRateCurrenciesPair(coin1: string, coin2: string): Observable<any> {
+    return this._http.get<any>(this.exchangeAatesApiEndPoint + `latest?symbols=${coin1},${coin2}`);
+  }
 }

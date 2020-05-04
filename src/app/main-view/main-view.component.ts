@@ -8,7 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { AlphavantageApiService } from '../shared/services/alphavantage-api.service';
 import { StackexchangeApiService } from '../shared/services/stackexchange-api.service';
-import { ExchangeRatesService } from '../shared/services/exchange-rates.service';
 
 import { stockSymbol } from '../shared/constants'; 
 
@@ -30,7 +29,6 @@ export class MainViewComponent implements OnInit {
 		private coinsRateCryptoCompare: DataDisplayFromAPI,
 		private x: AlphavantageApiService,
 		private stackExchangeService: StackexchangeApiService,
-		private exhangeRateService: ExchangeRatesService,
 		public dialog: MatDialog
 	) {}
 
@@ -123,16 +121,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(data);
 			console.log(data['items']);
 		});
-	}
-
-	/**
-	 * Get FOREX rates from API
-	 */
-	getCurrenciesRates(): void {
-		this.exhangeRateService.getExchangeRates('USD').subscribe(data => {
-			console.log(data);
-		});
-	}
+	}	
 	
 	ngOnInit () {this.getStackExchangeQuestions();
 		this.subject.next(false); // Didn't get yet data from API
@@ -156,8 +145,6 @@ export class MainViewComponent implements OnInit {
 			console.log(a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"]);
 			this.stock = a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"];
 		});
-
-		this.getCurrenciesRates();
 	}
  
 	
