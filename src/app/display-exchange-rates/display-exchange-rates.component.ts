@@ -59,7 +59,17 @@ export class DisplayExchangeRatesComponent implements OnInit {
   addCoinsPair(): void {
     this.coinsPairs.push(
       {
-        'coins': ['EUR/USD', 'EUR/GBP', 'USD/CAD', 'AUD/CAD', 'USD/JPY']
+        'coins': this.currenciesPairs,
+            'currentCoin': '',
+            'currency1': {
+                symbol: '',
+                price: ''
+            },
+            'currency2': {
+                symbol: '',
+                price: ''
+            },
+            'x':1
       }
     );
   }
