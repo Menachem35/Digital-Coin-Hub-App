@@ -1,4 +1,4 @@
-.main-container, .pairsHeader, .bidOfferContainer {
+.main-container, .pairsHeader, .currenciesContainer {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -10,12 +10,13 @@
     width: 98%;
     padding: 2px;
     margin: 10px 0 20px 0;
-    background-color: black;
+    background-color: /*#2E9DF7*/ rgb(3, 19, 75);
   }
   
   .pairsHeader {
     justify-content: space-between;
     margin: 0; padding: 0;
+    background-color: rgb(122, 127, 173);
   }
   
   .coinsDropDown {
@@ -29,12 +30,13 @@
     width: 32%;
     height: 100%;
     margin: 1px;
-    border: 1px solid #089ADA;
+    border: 1px solid rgb(193, 197, 199);
+    background-color: rgb(122, 127, 173);
    
   }
   
   .redRightArrow {
-    color: red;
+    color: black;
     font-weight: 800;
    /*font-size: 20pt;*/
   }
@@ -64,7 +66,7 @@
       font-weight: bold;
       font-size: 40pt;
       line-height: 0.5em;
-      background-color: green;
+      background-color:rgb(81, 28, 197);
       margin: 10% 0 0 40%;
       padding: 3% 0 0 2%;
     
@@ -79,7 +81,7 @@
     margin: 5px 0 0 0;
     
     padding: 5px;
-    background-color: red;
+    background-color: black;
     border-radius: 50%;
     width: 18px; height: 18px;
   }
@@ -89,39 +91,46 @@
       cursor: default;
     }
   
-  .bidOfferContainer {
+  .currenciesContainer {
     padding: 0 0 1px 1px;
     margin-bottom: 1px;
   }
-  .bidOfferContainer div {
-    border: 1px solid #5D5D5D;
+  .currenciesContainer div {
+    /*border: 1px solid #5D5D5D;*/
+
+    background-color: rgb(247, 248, 248);
+    /*-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;*/
+
     width: 49%;
     height: 50px;
-    margin: 1px 0 0 1px;
+    margin: 1px 0 0 2px;
     padding: 0;
   }
   
-  .bidOfferContainer p {
+  .currenciesContainer p {
     font-size: 7pt;
   }
   
-  .bidOfferButton {
+  .currencySymbol {
     margin-left: 40%;
+    color: black;
   }
   
   p {
     color: white;
   }
   
-  .bidValue, .offerValue {
+  .currency1Value, .currency2Value {
     margin: -30px 0 0 10%;
   }
-  .bidValue {
-    color: #01CD01;
+  .currency1Value {
+    color: rgb(22, 7, 90);
   
   }
-  .offerValue {
-    color: #FF0000;
+  .currency2Value {
+    color: rgb(8, 106, 235);
   }
   
   .largeDecimalDigits {
