@@ -19,7 +19,7 @@ export class DisplayExchangeRatesComponent implements OnInit {
   // Get the response from API
   private baseUSD: any;
 
-  private currenciesPairs: string[] = ['EUR/USD', 'EUR/GBP', 'USD/CAD', 'AUD/CAD', 'USD/JPY'];
+  private currenciesPairs: string[] = ['EUR/USD', 'EUR/GBP', 'USD/CAD', 'AUD/CAD', 'USD/JPY', 'USD/ILS', 'ILS/USD', 'CHF/USD'];
 
   public coinsPairs: any[] = [
     /*{
