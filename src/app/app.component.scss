@@ -33,7 +33,7 @@ h1 {
 }
 
 nav {
-	width: 10%;
+	width: 12%;
 	height: 100%;
 }
 
@@ -325,12 +325,12 @@ li:hover .ca-sub {
 
 @media screen 
   and (min-device-width: 821px) 
-  and (max-device-width: 1500px)  {
+  and (max-device-width: 1600px)  {
       nav {
-          width: 20%;
+          width: 25%;
       }
       .content_area {
-          width: 80%;
+          width: 75%;
       }
 }
 
@@ -493,8 +493,26 @@ and (orientation : portrait)
 }
 
 /* --- By height --- */
-@media screen and ( max-height: 900px ){
+@media screen and ( max-height: 1400px ){    
     .ca-menu li{
-		height: 55px;
+		height: 65px;
+	}
+}
+
+@media screen and ( max-height: 900px ){
+    .ca-main{
+        font-size: 12px;
+    }
+    .ca-menu li{
+		height: 45px;
+	}
+}
+
+@media screen and ( max-height: 700px ){
+    .ca-main{
+        font-size: 12px;
+    }
+    .ca-menu li{
+		height: 25px;
 	}
 }
