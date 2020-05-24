@@ -5,8 +5,9 @@ import { Subject, Observable, from } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { AlphavantageApiService } from '../shared/services/alphavantage-api.service';
+import { BlogApiService } from '../shared/services/blog-api.service';
+import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { StackexchangeApiService } from '../shared/services/stackexchange-api.service';
 
 import { stockSymbol } from '../shared/constants'; 
@@ -29,6 +30,7 @@ export class MainViewComponent implements OnInit {
 		private coinsRateCryptoCompare: DataDisplayFromAPI,
 		private x: AlphavantageApiService,
 		private stackExchangeService: StackexchangeApiService,
+		private blogService: BlogApiService,
 		public dialog: MatDialog
 	) {}
 
@@ -121,9 +123,19 @@ export class MainViewComponent implements OnInit {
 			//console.log(data);
 			console.log(data['items']);
 		});
-	}	
+	}
+
+	getBlogPosts(): void {
+		this.blogService.getDatafromBlog().subscribe(data => {
+			console.log(data[0]);
+			//console.log(data[0].content.rendered);
+			console.log(data[0].title.rendered);
+			console.log(data[0].excerpt.rendered);
+		})
+	}
 	
-	ngOnInit () {this.getStackExchangeQuestions();
+	ngOnInit () {
+		this.getStackExchangeQuestions();
 		this.subject.next(false); // Didn't get yet data from API
 		this.buildStokForm();
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,LTC,BCH,IOT,XRP,XVG,FCT')
@@ -145,6 +157,8 @@ export class MainViewComponent implements OnInit {
 			console.log(a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"]);
 			this.stock = a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"];
 		});
+
+		this.getBlogPosts();
 	}
  
 	
