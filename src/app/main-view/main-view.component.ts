@@ -48,6 +48,8 @@ export class MainViewComponent implements OnInit {
 
 	public questionsFromStackExchange: any[]; // Array to hold response from stackexchange API
 
+	public newsItem: string; // Get news item from wordpress API
+
 	columnDefs = [
         {headerName: 'Stock', field: 'stock', width: 150 },
         {headerName: 'Symbol', field: 'symbol', width: 150 },
@@ -129,6 +131,7 @@ export class MainViewComponent implements OnInit {
 		this.blogService.getDatafromBlog().subscribe(data => {
 			console.log(data[0]);
 			//console.log(data[0].content.rendered);
+			this.newsItem = data[0].content.rendered;
 			console.log(data[0].title.rendered);
 			console.log(data[0].excerpt.rendered);
 		})
