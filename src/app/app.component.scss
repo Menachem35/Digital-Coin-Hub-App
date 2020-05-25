@@ -61,7 +61,7 @@ nav ul {
 .ca-menu li{
     width: 98%;
     height: 68px;
-    overflow: hidden;
+    /*overflow: hidden;*/ // To enable side menu
     position: relative;
     display: block;
     background: #21374B;
@@ -77,7 +77,7 @@ nav ul {
     margin-bottom: 0px;
 	border-bottom: 0;
 }
-.ca-menu li a{
+.ca-menu li a, .parentLink {
     text-align: left;
     width: 100%;
     height: 100%;
@@ -129,6 +129,9 @@ li:hover .ca-sub {
 .ca-menu li:hover{
     background: #e1f0fa;
 }
+    .ca-menu li:hover .subMenu {
+         background: #e1f0fa;
+    }
 .ca-menu li:hover .ca-icon{
     font-size: 40px;
     color: #259add;
@@ -148,6 +151,32 @@ li:hover .ca-sub {
     -moz-animation: moveFromBottom 300ms ease-in-out;
     -ms-animation: moveFromBottom 300ms ease-in-out;
 }
+
+/* --- Sub Menu --- */
+.ca-menu .subMenu {
+    position: absolute;
+    display: none;
+    background-color:#21374B;
+    width: 220px;
+    height:200px;
+    left: 100%;
+    z-index: 1;
+}
+
+.ca-menu .subMenu .subMenuLink {
+    display: block;
+    height: 100px;
+    background-color: #BDE1F9;
+}
+.ca-menu .subMenu .subMenuLink:hover {
+    background-color: #E8F6FF;
+}
+
+.ca-menu li:hover .subMenu {
+    display: block;
+}
+/* --- ******** --- */
+
 @-webkit-keyframes moveFromBottom {
     from {
         opacity: 0;
@@ -369,6 +398,9 @@ li:hover .ca-sub {
 		background-color: #21374B;
 		height: 80px;
 	}
+    .ca-menu .subMenu {
+        left: 50%;
+    }
 
 	.content_area {
 		width: 100%;
@@ -400,7 +432,7 @@ li:hover .ca-sub {
 
 .socialIconContianer {
     width: 30px;
-    margin: 0;
+    margin: 20px 0 0 0;
     padding: 0;
 }
 /* ***** End Responsive Navigation ******* */
@@ -504,7 +536,7 @@ and (orientation : portrait)
         font-size: 12px;
     }
     .ca-menu li{
-		height: 45px;
+		height: 55px;
 	}
 }
 
@@ -513,6 +545,6 @@ and (orientation : portrait)
         font-size: 12px;
     }
     .ca-menu li{
-		height: 25px;
+		height: 45px;
 	}
 }

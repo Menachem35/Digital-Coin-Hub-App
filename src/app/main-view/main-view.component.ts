@@ -48,7 +48,7 @@ export class MainViewComponent implements OnInit {
 
 	public questionsFromStackExchange: any[]; // Array to hold response from stackexchange API
 
-	public newsItem: string; // Get news item from wordpress API
+	public newsItems: any[]; // Get posts from API
 
 	columnDefs = [
         {headerName: 'Stock', field: 'stock', width: 150 },
@@ -128,13 +128,25 @@ export class MainViewComponent implements OnInit {
 	}
 
 	getBlogPosts(): void {
-		this.blogService.getDatafromBlog().subscribe(data => {
-			console.log(data[0]);
+		this.blogService.getDatafromBlog(10).subscribe(data => {
+			this.newsItems = data;
+			console.log(data);
+
 			//console.log(data[0].content.rendered);
-			this.newsItem = data[0].content.rendered;
+			//this.newsItem = data[0].content.rendered;
+
 			console.log(data[0].title.rendered);
 			console.log(data[0].excerpt.rendered);
 		})
+	}
+
+	/**
+	 * When click on news item, save data to shared service
+	 * @param i - index of news item 
+	 */
+	displayNews(i: number): void {
+		this.blogService.newsItem.title = this.newsItems[i].title.rendered;
+		this.blogService.newsItem.content = this.newsItems[i].content.rendered;
 	}
 	
 	ngOnInit () {

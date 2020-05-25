@@ -13,7 +13,17 @@ export class BlogApiService {
 
   constructor(private _http: HttpClient) { }
 
-  getDatafromBlog(): Observable<any[]>{
-      return this._http.get<any[]>('http://www.technpens.com/wp-json/wp/v2/posts/');
+  // Get news item from wordpress API
+	public newsItem: any = {
+		title: '',
+    content: ''
+	};
+
+  /**
+   * Get posts from wordpress API
+   * @param numberOfPosts number of post to get from API
+   */
+  getDatafromBlog(numberOfPosts: number): Observable<any[]>{
+      return this._http.get<any[]>(`http://digitalcoinhub.io/blog/wp-json/wp/v2/posts/?per_page=${numberOfPosts}`);
   }
 }

@@ -93,7 +93,7 @@
 </div>
 
 <!-- Exchange Rates -->
-<div class="row">
+<div class="row" style="background-color: rgb(213, 226, 238);">
 	<div class="col-xl-3 d-xl-block col-lg-2 d-lg-block d-md-none d-sm-none d-none">
 		<p style="color: black;">Exhange Rates:</p>
 	</div>
@@ -107,8 +107,12 @@
 <!-- News -->
 <div class="row">
 	<div class="col-12">
-		News:
-		<div [innerHtml]="newsItem"></div>
+		<div class="news">
+			<p>News:</p>
+			<div *ngFor="let newsItem of newsItems; let i = index">
+				<a routerLink="/news/{{newsItem.slug}}" (click)="displayNews(i)">{{newsItem.title.rendered}}</a>
+			</div>
+		</div>
 	</div>
 </div>
 <!-- ****-->

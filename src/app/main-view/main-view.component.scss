@@ -79,6 +79,12 @@ input {
 	  margin-left: 10px;
   }
 
+.news {
+  margin: 10px 0 15px 10px;
+}
+ .news > p {
+   color: black;
+ }
 
 @media (max-width: 750px) {
   #crypto-container {

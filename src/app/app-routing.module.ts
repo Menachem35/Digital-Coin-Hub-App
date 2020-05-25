@@ -9,6 +9,8 @@ import { DigitalCoinsComponent } from './digital-coins/digital-coins.component';
 import { MiningComponent } from './mining/mining.component';
 import { StartupsComponent } from './startups/startups.component';
 import { EthereumComponent } from './ethereum/ethereum.component';
+import { NewsItemComponent } from './news/news-item/news-item.component';
+import { NewsArchiveComponent } from './news/news-archive/news-archive.component';
 import { NewsComponent } from './news/news.component';
 import { BuyWithDigitalCoinComponent } from './buy-with/buy-with.component';
 import { InvestmentComponent } from './investment/investment.component';
@@ -23,6 +25,8 @@ const routes: Routes = [
    { path: 'mining', component: MiningComponent},
    { path: 'startups', component: StartupsComponent },
    { path: 'ethereum', component: EthereumComponent },
+   { path: 'news/:id', component: NewsItemComponent },
+   { path: 'news-archive', component: NewsArchiveComponent},
    { path: 'news', component: NewsComponent },
    { path: 'buy-with-digital-coin', component: BuyWithDigitalCoinComponent },
    { path: 'investment', component: InvestmentComponent }
