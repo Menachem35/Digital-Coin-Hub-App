@@ -38,6 +38,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DisplayExchangeRatesComponent } from './display-exchange-rates/display-exchange-rates.component';
 import { NewsItemComponent } from './news/news-item/news-item.component';
 import { NewsArchiveComponent } from './news/news-archive/news-archive.component';
+import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { NewsArchiveComponent } from './news/news-archive/news-archive.component
 	OverlaySpinnerComponent,
 	DisplayExchangeRatesComponent,
 	NewsItemComponent,
-	NewsArchiveComponent
+	NewsArchiveComponent,
+	BarChartComponent
   ],
   imports: [
     BrowserModule,

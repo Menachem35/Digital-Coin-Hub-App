@@ -23,7 +23,8 @@ import { OverlaySpinnerComponent } from '../shared/overlay-spinner/overlay-spinn
 export class MainViewComponent implements OnInit {
 	
 	objectKeys = Object.keys;
-    cryptos: any;
+	cryptos: any; // Gets cryptos values from API
+	cryptosValues: any[]; // Holds crypto values to display in Chart
   
 	constructor (
 		private fb: FormBuilder,
@@ -127,6 +128,9 @@ export class MainViewComponent implements OnInit {
 		});
 	}
 
+	/**
+	 * Get latest 10 blog posts from the blog
+	 */
 	getBlogPosts(): void {
 		this.blogService.getDatafromBlog(10).subscribe(data => {
 			this.newsItems = data;
@@ -156,6 +160,14 @@ export class MainViewComponent implements OnInit {
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,LTC,BCH,IOT,XRP,XVG,FCT')
 			.subscribe(res => {
 				this.cryptos = res;
+
+				// Create crypto's values array to display in chart
+				this.cryptosValues = Object.keys(res).map(x => {
+					return {
+						coin:x,
+						value:res[x].USD
+					};
+				});
 		});
 		
 		this.x.getIntradayData().subscribe(a => {
