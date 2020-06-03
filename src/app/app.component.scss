@@ -546,5 +546,12 @@ and (orientation : portrait)
     }
     .ca-menu li{
 		height: 45px;
-	}
+    }
+    
+    .ca-icon{
+        line-height: 40px;
+    }
+    .ca-content {
+        top: 10px;
+    }
 }
