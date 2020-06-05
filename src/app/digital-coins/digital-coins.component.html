@@ -36,3 +36,10 @@
 		</ag-grid-angular>
 	</div>
 </div>
+
+<!-- Display Bar Chart -->
+<div class="row">
+	<div class="col-12" style="height: 400px;">
+		<app-bar-chart [chartData]="coinsListForChart" *ngIf="coinsListForChart"></app-bar-chart>
+	</div>
+</div>

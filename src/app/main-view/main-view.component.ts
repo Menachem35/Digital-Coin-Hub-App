@@ -25,6 +25,7 @@ export class MainViewComponent implements OnInit {
 	objectKeys = Object.keys;
 	cryptos: any; // Gets cryptos values from API
 	cryptosValues: any[]; // Holds crypto values to display in Chart
+	cryptosValuesWithoutBTC: any[] // To display chart of cryptos without BitCoin
   
 	constructor (
 		private fb: FormBuilder,
@@ -157,7 +158,7 @@ export class MainViewComponent implements OnInit {
 		this.getStackExchangeQuestions();
 		this.subject.next(false); // Didn't get yet data from API
 		this.buildStokForm();
-		this.coinsRateCryptoCompare.getPrices('BTC,ETH,LTC,BCH,IOT,XRP,XVG,FCT')
+		this.coinsRateCryptoCompare.getPrices('BTC,ETH,MKR,LTC,BCH,BSV,IOT,XRP,XVG')
 			.subscribe(res => {
 				this.cryptos = res;
 
@@ -168,6 +169,8 @@ export class MainViewComponent implements OnInit {
 						value:res[x].USD
 					};
 				});
+
+				this.cryptosValuesWithoutBTC = this.cryptosValues.filter(x => x.coin !== "BTC");
 		});
 		
 		this.x.getIntradayData().subscribe(a => {

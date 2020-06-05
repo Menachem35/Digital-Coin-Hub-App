@@ -51,9 +51,14 @@
 
 <!-- Charts -->
 <div class="row">
-	<div class="col-12">
+	<div class="col-3">
 		<app-bar-chart [chartData]="cryptosValues" *ngIf="cryptosValues"></app-bar-chart>
 	</div>
+	<div class="col-3">
+		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
+	</div>
+	<div class="col-3"></div>
+	<div class="col-3"></div>
 </div>
 <!-- ****** -->
 

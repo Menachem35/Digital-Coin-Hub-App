@@ -27,13 +27,15 @@ export class DigitalCoinsComponent implements OnInit {
 	public rowData: any[];
 	public frameworkComponents;
 
+	public coinsListForChart: any[]; // Display coins in d3 Bar Chart
+
 	private gridApi: any;
   	private gridColumnApi: any;
 	
 	objectKeys = Object.keys; // Get data from API through service 
     cryptos: any; // Get data from API through service
 	
-	coinsToDisplay = 'BTC,ETH,XMR,BTG,BCH,LTC,XRP,IOT,XVG,XRB,FCT,XLM,XZC,ZEC,DASH,ADA,TRX,DBC,EMB,MKR,FNC';
+	coinsToDisplay = 'BTC,ETH,XMR,BTG,BCH,LTC,XRP,IOT,XVG,XRB,FCT,XLM,XZC,ZEC,DASH,ADA,TRX,DBC,EMB,MKR,FNC,BSV';
 	
 	links: DCHlinks[]; // create a new array in type of DCHlinks to get the data
   
@@ -88,6 +90,13 @@ export class DigitalCoinsComponent implements OnInit {
 						link: this.links[index].dchCoynSymbol === x ? this.links[index].dchLink: ''
 					}
 				));
+
+				this.coinsListForChart = Object.keys(res).map(x => {
+					return {
+						coin: [x],
+						value: res[x].USD
+					};
+				});
 			});
 	}
 }
