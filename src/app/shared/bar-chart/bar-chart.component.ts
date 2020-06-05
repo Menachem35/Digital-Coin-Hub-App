@@ -44,7 +44,7 @@ export class BarChartComponent implements OnInit {
 
     const yAxis = g => g
         .attr("transform", `translate(${this.margin.left}, 0)`)
-        .call(d3.axisLeft(y).ticks(null/*, "$"*/))
+        .call(d3.axisLeft(y).ticks(null, "$f"))
         //.call(g => g.select(".domain").remove());
 
     this.svg = d3.select(this.hostElement).append('svg')

@@ -50,21 +50,20 @@
 </div>
 
 <!-- Charts -->
-<div class="row">
-	<div class="col-3">
+<div class="row" style="background-color: #E5F3FF;">
+	<div class="col-4">
 		<app-bar-chart [chartData]="cryptosValues" *ngIf="cryptosValues"></app-bar-chart>
 	</div>
-	<div class="col-3">
+	<div class="col-4">
 		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
 	</div>
-	<div class="col-3"></div>
-	<div class="col-3"></div>
+	<div class="col-4"></div>
 </div>
 <!-- ****** -->
 
 <div class="row">
 	<div class="col-xl-12">
-		<p style="color: black;">Popular Stocks:</p>
+		<p style="color: black; margin-top: 20px;">Popular Stocks:</p>
 		<p style="color: black;">Google: {{stockSymbol}}. {{stock}}</p>
 	</div>
 </div>
