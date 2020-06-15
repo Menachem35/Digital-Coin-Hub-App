@@ -47,6 +47,8 @@ export class BarChartComponent implements OnInit {
         .call(d3.axisLeft(y).ticks(null, "$f"))
         //.call(g => g.select(".domain").remove());
 
+    const tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
     this.svg = d3.select(this.hostElement).append('svg')
       .attr('width', '100%')
       .attr('height', '100%')
@@ -60,7 +62,19 @@ export class BarChartComponent implements OnInit {
           .attr("x", d => x(d.coin))
           .attr("y", d => y(d.value))
           .attr("height", d => y(0) - y(d.value))
-          .attr("width", x.bandwidth());
+          .attr("width", x.bandwidth())
+          .on("mousemove", function(d) {
+            d3.select(this).attr("fill", "grey");
+            tooltip
+              .style("left", d3.event.pageX - 50 + "px")
+              .style("top", d3.event.pageY - 90 + "px")
+              .style("display", "inline-block")
+              .html((d.coin) + "<br>" + "$" + (d.value));
+          })
+          .on("mouseout", function(d) {
+            d3.select(this).attr("fill", "steelblue");
+            tooltip.style("display", "none")
+          });
 
       this.svg.append("g")
         .call(xAxis);
