@@ -64,7 +64,7 @@ export class BarChartComponent implements OnInit {
           .attr("height", d => y(0) - y(d.value))
           .attr("width", x.bandwidth())
           .on("mousemove", function(d) {
-            d3.select(this).attr("fill", "grey");
+            d3.select(this).attr("fill", "#9AC6EA");
             tooltip
               .style("left", d3.event.pageX - 50 + "px")
               .style("top", d3.event.pageY - 90 + "px")
