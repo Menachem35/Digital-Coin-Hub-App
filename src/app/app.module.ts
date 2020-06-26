@@ -39,6 +39,7 @@ import { DisplayExchangeRatesComponent } from './display-exchange-rates/display-
 import { NewsItemComponent } from './news/news-item/news-item.component';
 import { NewsArchiveComponent } from './news/news-archive/news-archive.component';
 import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
+import { LineChartComponent } from './shared/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { BarChartComponent } from './shared/bar-chart/bar-chart.component';
 	DisplayExchangeRatesComponent,
 	NewsItemComponent,
 	NewsArchiveComponent,
-	BarChartComponent
+	BarChartComponent,
+	LineChartComponent
   ],
   imports: [
     BrowserModule,
