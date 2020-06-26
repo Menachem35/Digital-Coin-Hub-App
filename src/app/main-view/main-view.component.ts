@@ -48,6 +48,8 @@ export class MainViewComponent implements OnInit {
 		value: ''
 	}; // Return the searched stock
 
+	public weeklyChartData: any[]; // Hold weekly values of stock to display in home page chart
+
 	public questionsFromStackExchange: any[]; // Array to hold response from stackexchange API
 
 	public newsItems: any[]; // Get posts from API
@@ -173,19 +175,29 @@ export class MainViewComponent implements OnInit {
 				this.cryptosValuesWithoutBTC = this.cryptosValues.filter(x => x.coin !== "BTC");
 		});
 		
-		this.x.getIntradayData().subscribe(a => {
+		/*this.x.getIntradayData().subscribe(a => {
 			//console.log(a);
 			console.log(a["Meta Data"]["2. Symbol"]);
 			//console.log(a["Time Series (5min)"]);
 			this.stockSymbol = a["Meta Data"]["2. Symbol"];
-		});
-		this.x.getDailyData().subscribe(a => {
+		});*/
+		this.x.getDailyData().subscribe(data => {
+			// Build the array for the weekly chart
+			this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
+				return {
+					date: x,
+					daily: data["Time Series (Daily)"][x]
+				}	
+			});
+			
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
 			//console.log(a["Meta Data"]["1. Information"]);
 			//console.log(a["Time Series (Daily)"]);
 			//console.log(Object.keys(a["Time Series (Daily)"])[Object.keys(a["Time Series (Daily)"]).length-1]);
-			console.log(a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"]);
-			this.stock = a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"];
+			console.log(data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"]);
+			this.stock = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+		}, error => {
+			console.log("Error message ALPHA VANTAGE", error);
 		});
 
 		this.getBlogPosts();
