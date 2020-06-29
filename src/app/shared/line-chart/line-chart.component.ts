@@ -24,12 +24,32 @@ export class LineChartComponent implements OnInit {
     const width: number = this.hostElement.parentElement.offsetWidth * 0.6; //800;
 
     const x = d3.scaleUtc()
-              .domain(<[Date, Date]>d3.extent(this.lineChartData))
+              .domain(<[Date, Date]>d3.extent(this.lineChartData, d => d.date))
               .range([this.margin.left, width - this.margin.right]);
+
+    const y = d3.scaleLinear()
+              .domain([0, d3.max(this.lineChartData, d => d.daily.close)])
+              .range([height - this.margin.bottom, this.margin.top]);
 
     const xAxis = g => g
               .attr("transform", `translate(0,${height - this.margin.bottom})`)
-              .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0))
+              .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
+    
+    const yAxis = g => g
+              .attr("transform", `translate(${this.margin.left},0)`)
+              .call(d3.axisLeft(y))
+              .call(g => g.select(".domain").remove())
+              .call(g => g.select(".tick:last-of-type text").clone()
+                  .attr("x", 3)
+                  .attr("text-anchor", "start")
+                  .attr("font-weight", "bold")
+                  .text(/*data.y*/"abc"));
+
+    /*const line = d3.line()
+              .curve(d3.curveStep)
+              .defined(d => !isNaN(d.daily.close))
+              .x(d => x(d.date))
+              .y(d => y(d.value))*/
   }
 
   ngOnInit(): void {
