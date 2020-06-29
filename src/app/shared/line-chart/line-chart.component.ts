@@ -45,12 +45,26 @@ export class LineChartComponent implements OnInit {
                   .attr("font-weight", "bold")
                   .text(/*data.y*/"abc"));
 
-    /*const line = d3.line()
+    const line = d3.line()
               .curve(d3.curveStep)
-              .defined(d => !isNaN(d.daily.close))
+              .defined(d => !isNaN(d.daily))
               .x(d => x(d.date))
-              .y(d => y(d.value))*/
-  }
+              .y(d => y(d.value));
+
+    this.svg = d3.select(this.hostElement).append("svg")
+        .attr('height', '100%')
+        .attr('width', '100%')
+        .attr('viewBox', '0 0 ' + /*viewBoxWidth*/width + ' ' + /*viewBoxHeight*/height);
+
+    this.svg.append("path")
+        .datum(this.lineChartData)
+        .attr("fill", "none")
+        .attr("stroke", "steelblue")
+        .attr("stroke-width", 1.5)
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("d", line);
+    }
 
   ngOnInit(): void {
   }
