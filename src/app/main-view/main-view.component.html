@@ -57,7 +57,9 @@
 	<div class="col-4">
 		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
 	</div>
-	<div class="col-4"></div>
+	<div class="col-4">
+		<app-line-chart [lineChartData]="weeklyChartData"></app-line-chart>
+	</div>
 </div>
 <!-- ****** -->
 

@@ -189,7 +189,7 @@ export class MainViewComponent implements OnInit {
 					daily: data["Time Series (Daily)"][x]
 				}	
 			});
-			//console.log("Weekly chart", this.weeklyChartData);
+			console.log("Weekly chart", this.weeklyChartData);
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
 			//console.log(a["Meta Data"]["1. Information"]);
 			//console.log(a["Time Series (Daily)"]);

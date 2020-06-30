@@ -2,6 +2,8 @@ import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angula
 
 import * as d3 from 'd3';
 
+export type DataType = {dates: any, daily:any};
+
 @Component({
   selector: 'app-line-chart',
   encapsulation: ViewEncapsulation.None,
@@ -10,7 +12,9 @@ import * as d3 from 'd3';
 })
 export class LineChartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private elRef: ElementRef) {
+      this.hostElement = this.elRef.nativeElement;
+   }
 
   @Input() lineChartData: any[];
 
@@ -28,7 +32,7 @@ export class LineChartComponent implements OnInit {
               .range([this.margin.left, width - this.margin.right]);
 
     const y = d3.scaleLinear()
-              .domain([0, d3.max(this.lineChartData, d => d.daily.close)])
+              .domain([0, d3.max(this.lineChartData, d => d.daily["4.close"])])
               .range([height - this.margin.bottom, this.margin.top]);
 
     const xAxis = g => g
@@ -45,16 +49,22 @@ export class LineChartComponent implements OnInit {
                   .attr("font-weight", "bold")
                   .text(/*data.y*/"abc"));
 
-    const line = d3.line()
+    const line = d3.line<DataType>()
               .curve(d3.curveStep)
-              .defined(d => !isNaN(d.daily))
-              .x(d => x(d.date))
-              .y(d => y(d.value));
+              .defined(d => !isNaN(d.daily["4. close"]))
+              .x(d => x(d.dates))
+              .y(d => y(d.daily["4. close"]));
 
     this.svg = d3.select(this.hostElement).append("svg")
         .attr('height', '100%')
         .attr('width', '100%')
         .attr('viewBox', '0 0 ' + /*viewBoxWidth*/width + ' ' + /*viewBoxHeight*/height);
+
+    this.svg.append("g")
+        .call(xAxis);
+
+    this.svg.append("g")
+        .call(yAxis);
 
     this.svg.append("path")
         .datum(this.lineChartData)
@@ -64,9 +74,19 @@ export class LineChartComponent implements OnInit {
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("d", line);
-    }
+  }
+
+  private removeExistingChartFromParent() {
+      // !!!!Caution!!!
+      // Make sure not to do;
+      //     d3.select('svg').remove();
+      // That will clear all other SVG elements in the DOM
+      d3.select(this.hostElement).select('svg').remove();
+  }
 
   ngOnInit(): void {
+      this.removeExistingChartFromParent();
+      this.createLineChart();
   }
 
 }
