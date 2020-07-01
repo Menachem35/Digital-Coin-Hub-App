@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angula
 
 import * as d3 from 'd3';
 
-export type DataType = {dates: any, daily:any};
+export type DataType = {date: any, daily:any};
 
 @Component({
   selector: 'app-line-chart',
@@ -16,7 +16,9 @@ export class LineChartComponent implements OnInit {
       this.hostElement = this.elRef.nativeElement;
    }
 
-  @Input() lineChartData: any[];
+  @Input() stockData: any[]; // Gets stock data from main component
+
+  private lineChartData: any[]; // Create the data for the line chart
 
   hostElement: any; // Native element hosting the SVG container
   svg: any;
@@ -28,11 +30,11 @@ export class LineChartComponent implements OnInit {
     const width: number = this.hostElement.parentElement.offsetWidth * 0.6; //800;
 
     const x = d3.scaleUtc()
-              .domain(<[Date, Date]>d3.extent(this.lineChartData, d => d.date))
+              .domain(<[Date, Date]>d3.extent(this.lineChartData, d => new Date(d.date)))
               .range([this.margin.left, width - this.margin.right]);
 
     const y = d3.scaleLinear()
-              .domain([0, d3.max(this.lineChartData, d => d.daily["4.close"])])
+              .domain([0, d3.max(this.lineChartData, d => d.daily["4. close"])])
               .range([height - this.margin.bottom, this.margin.top]);
 
     const xAxis = g => g
@@ -47,12 +49,12 @@ export class LineChartComponent implements OnInit {
                   .attr("x", 3)
                   .attr("text-anchor", "start")
                   .attr("font-weight", "bold")
-                  .text(/*data.y*/"abc"));
+                  .text(/*data.y*/"Weekley stock rate"));
 
     const line = d3.line<DataType>()
               .curve(d3.curveStep)
               .defined(d => !isNaN(d.daily["4. close"]))
-              .x(d => x(d.dates))
+              .x(d => x(new Date(d.date)))
               .y(d => y(d.daily["4. close"]));
 
     this.svg = d3.select(this.hostElement).append("svg")
@@ -85,6 +87,8 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.lineChartData = this.stockData.splice(0, 7);
+      console.log("*** LineChart Data", this.lineChartData);
       this.removeExistingChartFromParent();
       this.createLineChart();
   }

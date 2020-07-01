@@ -58,7 +58,7 @@
 		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
 	</div>
 	<div class="col-4">
-		<app-line-chart [lineChartData]="weeklyChartData"></app-line-chart>
+		<app-line-chart [stockData]="weeklyChartData" *ngIf="weeklyChartData"></app-line-chart>
 	</div>
 </div>
 <!-- ****** -->
@@ -66,14 +66,15 @@
 <div class="row">
 	<div class="col-xl-12">
 		<p style="color: black; margin-top: 20px;">Popular Stocks:</p>
-		<p style="color: black;">Google: {{stockSymbol}}. {{stock}}</p>
+		<p style="color: black;">
+			{{displayPopularStock.stock }}: {{displayPopularStock.symbol}}. {{displayPopularStock.value}}</p>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-xl-4">
 		<form [formGroup]="getStockForm">
-			<label>Search stock by company name:
+			<label>Search other popular stock by company name:
 				<input type="text" formControlName="stockName">
 			</label>
 			<button mat-raised-button color="primary" (click)="searchStock('byCompany')">search</button>

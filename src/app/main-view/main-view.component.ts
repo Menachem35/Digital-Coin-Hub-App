@@ -10,7 +10,8 @@ import { BlogApiService } from '../shared/services/blog-api.service';
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { StackexchangeApiService } from '../shared/services/stackexchange-api.service';
 
-import { stockSymbol } from '../shared/constants'; 
+import { PopularStock } from '../shared/popularStock'; // Popular stock interface
+import { stockSymbol } from '../shared/constants'; // Matches stock name to stock symbol
 
 import { OverlaySpinnerComponent } from '../shared/overlay-spinner/overlay-spinner.component';
 
@@ -34,15 +35,21 @@ export class MainViewComponent implements OnInit {
 		private stackExchangeService: StackexchangeApiService,
 		private blogService: BlogApiService,
 		public dialog: MatDialog
-	) {}
+	) {
+		this.displayPopularStock = {
+			stock: '',
+			symbol: '',
+			value: 0
+		}
+	}
 
 	public getStockForm: FormGroup;
 
 	private subject = new Subject<boolean>(); // When get data from API close modal
 	
 	title = 'Digital Coin Hub';
-	public stockSymbol: string = '';
-	public stock: string = '';
+	public displayPopularStock: PopularStock; // Display popular stock symbol at home page
+	
 	public stockFromSearch: any = {
 		symbol: '',
 		value: ''
@@ -55,9 +62,9 @@ export class MainViewComponent implements OnInit {
 	public newsItems: any[]; // Get posts from API
 
 	columnDefs = [
-        {headerName: 'Stock', field: 'stock', width: 150 },
-        {headerName: 'Symbol', field: 'symbol', width: 150 },
-        {headerName: 'Price', field: 'price', width: 100}
+        { headerName: 'Stock', field: 'stock', width: 150 },
+        { headerName: 'Symbol', field: 'symbol', width: 150 },
+        { headerName: 'Price', field: 'price', width: 100}
     ];
 
     rowData = Object.keys(stockSymbol).map(x => {
@@ -181,7 +188,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(a["Time Series (5min)"]);
 			this.stockSymbol = a["Meta Data"]["2. Symbol"];
 		});*/
-		this.x.getDailyData().subscribe(data => {
+		this.x.getDailyData('GOOGL').subscribe(data => {console.log("Shoko toto is", data);
 			// Build the array for the weekly chart
 			this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
 				return {
@@ -195,7 +202,9 @@ export class MainViewComponent implements OnInit {
 			//console.log(a["Time Series (Daily)"]);
 			//console.log(Object.keys(a["Time Series (Daily)"])[Object.keys(a["Time Series (Daily)"]).length-1]);
 			console.log(data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"]);
-			this.stock = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+			this.displayPopularStock.stock = "Google";
+			this.displayPopularStock.symbol = "GOOGL";
+			this.displayPopularStock.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
 		}, error => {
 			console.log("Error message ALPHA VANTAGE", error);
 		});

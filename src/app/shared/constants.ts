@@ -2,6 +2,7 @@ export const stockSymbol: any = {
     'alphabet': 'GOOGL',
     'amazon': 'AMZN',
     'amd': 'AMD',
+    'american express': 'AXP',
     'apple': 'AAPL',
     'bny mellon': 'BK',
     'dell': 'DELL',
@@ -12,6 +13,7 @@ export const stockSymbol: any = {
     'ibm': 'IBM',
     'intel': 'INTC',
     'lyft': 'LYFT',
+    'mastercard': 'MA',
     'microsoft': 'MSFT',
     'netflix': 'NFLX',
     'nvidia': 'NVDA',
@@ -19,5 +21,6 @@ export const stockSymbol: any = {
     'spotify': 'SPOT',
     'tesla': 'TSLA',
     'twitter': 'TWTR',
-    'uber': 'UBER'
+    'uber': 'UBER',
+    'visa': 'V'
 };
