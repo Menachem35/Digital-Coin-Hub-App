@@ -37,8 +37,8 @@ export class MainViewComponent implements OnInit {
 		public dialog: MatDialog
 	) {
 		this.displayPopularStock = {
-			stock: '',
-			symbol: '',
+			stock: 'Google',
+			symbol: 'GOOGL',
 			value: 0
 		}
 	}
@@ -102,8 +102,10 @@ export class MainViewComponent implements OnInit {
 
 		if (searchType === 'bySymbol') {
 			searchBy = this.getStockForm.value.stockSymbol;
+			this.displayPopularStock.stock = "";
 		} else if (searchType === 'byCompany') {
 			searchBy = this.getStockForm.value.stockName;
+			this.displayPopularStock.stock = searchBy.toUpperCase();
 		}
 
 		this.x.searchStock(searchBy, searchType).subscribe(data => {
@@ -116,7 +118,16 @@ export class MainViewComponent implements OnInit {
 			} else {
 				this.subject.next(true);
 				this.stockFromSearch.symbol = data["Meta Data"]["2. Symbol"];
+				this.displayPopularStock.symbol = data["Meta Data"]["2. Symbol"];
 				this.stockFromSearch.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+				this.displayPopularStock.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+
+				this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
+					return {
+						date: x,
+						daily: data["Time Series (Daily)"][x]
+					}	
+				});
 			}
 		}, error => {
 			console.log(error);
@@ -188,7 +199,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(a["Time Series (5min)"]);
 			this.stockSymbol = a["Meta Data"]["2. Symbol"];
 		});*/
-		this.x.getDailyData('GOOGL').subscribe(data => {console.log("Shoko toto is", data);
+		this.x.getDailyData(this.displayPopularStock.symbol).subscribe(data => {
 			// Build the array for the weekly chart
 			this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
 				return {
@@ -202,8 +213,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(a["Time Series (Daily)"]);
 			//console.log(Object.keys(a["Time Series (Daily)"])[Object.keys(a["Time Series (Daily)"]).length-1]);
 			console.log(data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"]);
-			this.displayPopularStock.stock = "Google";
-			this.displayPopularStock.symbol = "GOOGL";
+
 			this.displayPopularStock.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
 		}, error => {
 			console.log("Error message ALPHA VANTAGE", error);
