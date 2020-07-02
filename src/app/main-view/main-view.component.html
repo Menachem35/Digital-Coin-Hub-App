@@ -51,19 +51,25 @@
 
 <!-- Charts -->
 <div class="row" style="background-color: #E5F3FF;">
+	<div class="col-4"></div>
+	<div class="col-4"></div>
+	<div class="col-4">
+		<button mat-button [matMenuTriggerFor]="menu" class="lineChartMenu">Change dates range</button>
+		<mat-menu #menu="matMenu">
+  			<button mat-menu-item (click)="changeRange('Weekly')">Weekley</button>
+  			<button mat-menu-item (click)="changeRange('Monthly')">Monthly</button>
+  			<button mat-menu-item (click)="changeRange('Year')">Yearly</button>
+		</mat-menu>
+	</div>
+</div>
+<div class="row" style="background-color: #E5F3FF;">
 	<div class="col-4">
 		<app-bar-chart [chartData]="cryptosValues" *ngIf="cryptosValues"></app-bar-chart>
 	</div>
 	<div class="col-4">
 		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
 	</div>
-	<div class="col-4"><!--  *ngIf="weeklyChartData" -->
-		<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-		<mat-menu #menu="matMenu">
-  			<button mat-menu-item (click)="changeRange('Weekly')">Weekley</button>
-  			<button mat-menu-item (click)="changeRange('Monthly')">Monthly</button>
-  			<button mat-menu-item (click)="changeRange('Year')">Yearly</button>
-		</mat-menu>
+	<div class="col-4"><!--  *ngIf="weeklyChartData" -->		
 		<app-line-chart [stockInfo]="displayPopularStock"></app-line-chart>
 	</div>
 </div>

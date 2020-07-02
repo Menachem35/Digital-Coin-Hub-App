@@ -83,27 +83,43 @@ export class MainViewComponent implements OnInit {
    	*/
   	changeRange(range: string): void {
 		switch (range) {
-	  		case "weekely": {
-				//this.lineChartRange = 7;
+	  		case "weekly": {
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 7,
+					rangeText: range
+				});
 				break;
 	  		}
 	  		case "Monthly": {
-				//this.lineChartRange = 30;
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 30,
+					rangeText: range
+				});
 				break;
 	  		}
 	  		case "Year": {
-				//this.lineChartRange = 365;
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 365,
+					rangeText: range
+				});
 				break;
 	  		}
 	  		default: {
-				//this.lineChartRange = 7;
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 7,
+					rangeText: range
+				});
 				break;
 	  		}
 		}
 
 	}
 
-	buildStokForm(): void {
+	buildStockForm(): void {
 		this.getStockForm = this.fb.group({
 			'stockName': [null],
 			'stockSymbol': [null]
@@ -154,10 +170,12 @@ export class MainViewComponent implements OnInit {
 						daily: data["Time Series (Daily)"][x]
 					}	
 				});
+
 				this.stocksFromApi.stockDataSubject.next({
 					stockData: this.weeklyChartData,
-					range: "Weekly"
-				})
+					datesRange: 7,
+					rangeText: "Weekly"
+				});
 			}
 		}, error => {
 			console.log(error);
@@ -207,7 +225,7 @@ export class MainViewComponent implements OnInit {
 	ngOnInit () {
 		this.getStackExchangeQuestions();
 		this.subject.next(false); // Didn't get yet data from API
-		this.buildStokForm();
+		this.buildStockForm();
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,MKR,LTC,BCH,BSV,IOT,XRP,XVG')
 			.subscribe(res => {
 				this.cryptos = res;
@@ -240,7 +258,8 @@ export class MainViewComponent implements OnInit {
 			console.log("Weekly chart", this.weeklyChartData);
 			this.stocksFromApi.stockDataSubject.next({
 				stockData: this.weeklyChartData,
-				range: "Weekly"
+				datesRange: 7,
+				rangeText: "Weekly"
 			});
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
 			//console.log(a["Meta Data"]["1. Information"]);

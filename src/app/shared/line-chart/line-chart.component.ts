@@ -55,7 +55,7 @@ export class LineChartComponent implements OnInit {
                   .attr("x", 3)
                   .attr("text-anchor", "start")
                   .attr("font-weight", "bold")
-                  .text(/*data.y*/`Weekley stock rate for ${this.stockInfo.stock}`));
+                  .text(/*data.y*/`${this.stockInfo["datesRangeText"]} stock rate for ${this.stockInfo.stock}`));
 
     const line = d3.line<DataType>()
               .curve(d3.curveStep)
@@ -95,7 +95,12 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit(): void {
       this.stocksFromApi.getStockData().subscribe(data => {
-        //this.lineChartData = data.stockData.splice(0, data["range"])
+      this.stockInfo["datesRangeText"] = data["rangeText"];
+      this.lineChartData = [];  
+      for(let i = 0; i <= data["datesRange"]; i++) {
+          this.lineChartData.push(data["stockData"][i]);
+        }
+        //this.lineChartData = x["stockData"].splice(0, x["range"])
         this.removeExistingChartFromParent();
         this.createLineChart();
       });

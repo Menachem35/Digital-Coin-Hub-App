@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { stockSymbol } from '../constants';
@@ -21,11 +21,7 @@ export class AlphavantageApiService {
   private dailyUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=';
 
   // Holds stock data to display in line chart
-  public stockDataSubject = new BehaviorSubject<any>({
-      /* Initial value for the Behavior subject */
-      stockData: [],
-      range: "Weekly"
-  });
+  public stockDataSubject = new Subject<any>();
 
   getIntradayData(): Observable<any[]> {
 	  return this._http.get<any[]>(this.intradayUrl);//.map(a => this.x = a);
