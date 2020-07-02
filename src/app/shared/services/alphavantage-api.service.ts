@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { stockSymbol } from '../constants';
@@ -18,14 +18,21 @@ export class AlphavantageApiService {
   private x: any[];
   
   private intradayUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&outputsize=compact&symbol=GOOGL&interval=5min&apikey=DRGGM1B76NVM7H6W';
-  private dailyUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=GOOGL&outputsize=full&apikey=DRGGM1B76NVM7H6W';
-  
+  private dailyUrl: string = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&outputsize=compact&symbol=';
+
+  // Holds stock data to display in line chart
+  public stockDataSubject = new Subject<any>();
+
   getIntradayData(): Observable<any[]> {
 	  return this._http.get<any[]>(this.intradayUrl);//.map(a => this.x = a);
   }
   
-  getDailyData(): Observable<any[]> {
-	  return this._http.get<any[]>(this.dailyUrl);
+  getDailyData(stockSymbol: string): Observable<any[]> {
+	  return this._http.get<any[]>(this.dailyUrl + `${stockSymbol}&outputsize=full&apikey=DRGGM1B76NVM7H6W`);
+  }
+
+  getStockData(): Observable<any[]> {
+    return this.stockDataSubject.asObservable();
   }
 
   /**

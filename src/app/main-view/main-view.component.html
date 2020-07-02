@@ -51,27 +51,47 @@
 
 <!-- Charts -->
 <div class="row" style="background-color: #E5F3FF;">
-	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12">
+	<div class="col-4"></div>
+	<div class="col-4"></div>
+	<div class="col-4">
+		<button mat-button [matMenuTriggerFor]="menu" class="lineChartMenu">Change dates range</button>
+		<mat-menu #menu="matMenu">
+  			<button mat-menu-item (click)="changeRange('Weekly')">Weekley</button>
+  			<button mat-menu-item (click)="changeRange('Monthly')">Monthly</button>
+  			<button mat-menu-item (click)="changeRange('Year')">Yearly</button>
+		</mat-menu>
+	</div>
+</div>
+<div class="row" style="background-color: #E5F3FF;">
+	<div class="col-4">
 		<app-bar-chart [chartData]="cryptosValues" *ngIf="cryptosValues"></app-bar-chart>
 	</div>
 	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 col-12">
 		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
 	</div>
-	<div class="col-xl-4 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+	<div class="col-4"><!--  *ngIf="weeklyChartData" -->		
+		<app-line-chart [stockInfo]="displayPopularStock"></app-line-chart>
+	</div>
 </div>
 <!-- ****** -->
 
 <div class="row">
 	<div class="col-xl-12">
 		<p style="color: black; margin-top: 20px;">Popular Stocks:</p>
-		<p style="color: black;">Google: {{stockSymbol}}. {{stock}}</p>
+		<p style="color: black;">
+			Stock: {{ displayPopularStock.stock }}
+			<br />
+			 Symbol: {{displayPopularStock.symbol}}.
+			 <br /> 
+			 Price (close): {{displayPopularStock.value}}
+		</p>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-xl-4">
 		<form [formGroup]="getStockForm">
-			<label>Search stock by company name:
+			<label>Search other popular stock by company name:
 				<input type="text" formControlName="stockName">
 			</label>
 			<button mat-raised-button color="primary" (click)="searchStock('byCompany')">search</button>

@@ -10,7 +10,8 @@ import { BlogApiService } from '../shared/services/blog-api.service';
 import { DataDisplayFromAPI } from '../data-display-from-api.service';
 import { StackexchangeApiService } from '../shared/services/stackexchange-api.service';
 
-import { stockSymbol } from '../shared/constants'; 
+import { PopularStock } from '../shared/popularStock'; // Popular stock interface
+import { stockSymbol } from '../shared/constants'; // Matches stock name to stock symbol
 
 import { OverlaySpinnerComponent } from '../shared/overlay-spinner/overlay-spinner.component';
 
@@ -30,32 +31,40 @@ export class MainViewComponent implements OnInit {
 	constructor (
 		private fb: FormBuilder,
 		private coinsRateCryptoCompare: DataDisplayFromAPI,
-		private x: AlphavantageApiService,
+		private stocksFromApi: AlphavantageApiService,
 		private stackExchangeService: StackexchangeApiService,
 		private blogService: BlogApiService,
 		public dialog: MatDialog
-	) {}
+	) {
+		this.displayPopularStock = {
+			stock: 'Google',
+			symbol: 'GOOGL',
+			value: 0
+		}
+	}
 
 	public getStockForm: FormGroup;
 
 	private subject = new Subject<boolean>(); // When get data from API close modal
 	
 	title = 'Digital Coin Hub';
-	public stockSymbol: string = '';
-	public stock: string = '';
+	public displayPopularStock: PopularStock; // Display popular stock symbol at home page
+	
 	public stockFromSearch: any = {
 		symbol: '',
 		value: ''
 	}; // Return the searched stock
+
+	public weeklyChartData: any[]; // Hold weekly values of stock to display in home page chart
 
 	public questionsFromStackExchange: any[]; // Array to hold response from stackexchange API
 
 	public newsItems: any[]; // Get posts from API
 
 	columnDefs = [
-        {headerName: 'Stock', field: 'stock', width: 150 },
-        {headerName: 'Symbol', field: 'symbol', width: 150 },
-        {headerName: 'Price', field: 'price', width: 100}
+        { headerName: 'Stock', field: 'stock', width: 150 },
+        { headerName: 'Symbol', field: 'symbol', width: 150 },
+        { headerName: 'Price', field: 'price', width: 100}
     ];
 
     rowData = Object.keys(stockSymbol).map(x => {
@@ -66,9 +75,51 @@ export class MainViewComponent implements OnInit {
         { stock: 'Apple', symbol: 'AAPL', price: '' },
 		{ stock: 'Microsoft', symbol: 'MSFT', price: '' },
 		{ stock: 'Tesla', symbol: 'TSLA', price: '' }
-    ];*/
+	];*/
+	
+	/**
+   	* 
+   	* @param range dates range for the stock line chart
+   	*/
+  	changeRange(range: string): void {
+		switch (range) {
+	  		case "weekly": {
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 7,
+					rangeText: range
+				});
+				break;
+	  		}
+	  		case "Monthly": {
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 30,
+					rangeText: range
+				});
+				break;
+	  		}
+	  		case "Year": {
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 365,
+					rangeText: range
+				});
+				break;
+	  		}
+	  		default: {
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 7,
+					rangeText: range
+				});
+				break;
+	  		}
+		}
 
-	buildStokForm(): void {
+	}
+
+	buildStockForm(): void {
 		this.getStockForm = this.fb.group({
 			'stockName': [null],
 			'stockSymbol': [null]
@@ -93,11 +144,13 @@ export class MainViewComponent implements OnInit {
 
 		if (searchType === 'bySymbol') {
 			searchBy = this.getStockForm.value.stockSymbol;
+			this.displayPopularStock.stock = "";
 		} else if (searchType === 'byCompany') {
 			searchBy = this.getStockForm.value.stockName;
+			this.displayPopularStock.stock = searchBy.toUpperCase();
 		}
 
-		this.x.searchStock(searchBy, searchType).subscribe(data => {
+		this.stocksFromApi.searchStock(searchBy, searchType).subscribe(data => {
 			if (/*data[0] === "Stock was not found"*/Array.isArray(data)) {
 				setTimeout(() => {
 					this.subject.next(true);
@@ -107,7 +160,22 @@ export class MainViewComponent implements OnInit {
 			} else {
 				this.subject.next(true);
 				this.stockFromSearch.symbol = data["Meta Data"]["2. Symbol"];
+				this.displayPopularStock.symbol = data["Meta Data"]["2. Symbol"];
 				this.stockFromSearch.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+				this.displayPopularStock.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+
+				this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
+					return {
+						date: x,
+						daily: data["Time Series (Daily)"][x]
+					}	
+				});
+
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					datesRange: 7,
+					rangeText: "Weekly"
+				});
 			}
 		}, error => {
 			console.log(error);
@@ -157,7 +225,7 @@ export class MainViewComponent implements OnInit {
 	ngOnInit () {
 		this.getStackExchangeQuestions();
 		this.subject.next(false); // Didn't get yet data from API
-		this.buildStokForm();
+		this.buildStockForm();
 		this.coinsRateCryptoCompare.getPrices('BTC,ETH,MKR,LTC,BCH,BSV,IOT,XRP,XVG')
 			.subscribe(res => {
 				this.cryptos = res;
@@ -173,19 +241,35 @@ export class MainViewComponent implements OnInit {
 				this.cryptosValuesWithoutBTC = this.cryptosValues.filter(x => x.coin !== "BTC");
 		});
 		
-		this.x.getIntradayData().subscribe(a => {
+		/*this.x.getIntradayData().subscribe(a => {
 			//console.log(a);
 			console.log(a["Meta Data"]["2. Symbol"]);
 			//console.log(a["Time Series (5min)"]);
 			this.stockSymbol = a["Meta Data"]["2. Symbol"];
-		});
-		this.x.getDailyData().subscribe(a => {
+		});*/
+		this.stocksFromApi.getDailyData(this.displayPopularStock.symbol).subscribe(data => {
+			// Build the array for the weekly chart
+			this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
+				return {
+					date: x,
+					daily: data["Time Series (Daily)"][x]
+				}	
+			});
+			console.log("Weekly chart", this.weeklyChartData);
+			this.stocksFromApi.stockDataSubject.next({
+				stockData: this.weeklyChartData,
+				datesRange: 7,
+				rangeText: "Weekly"
+			});
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
 			//console.log(a["Meta Data"]["1. Information"]);
 			//console.log(a["Time Series (Daily)"]);
 			//console.log(Object.keys(a["Time Series (Daily)"])[Object.keys(a["Time Series (Daily)"]).length-1]);
-			console.log(a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"]);
-			this.stock = a["Time Series (Daily)"][Object.keys(a["Time Series (Daily)"])[0]]["4. close"];
+			console.log(data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"]);
+
+			this.displayPopularStock.value = data["Time Series (Daily)"][Object.keys(data["Time Series (Daily)"])[0]]["4. close"];
+		}, error => {
+			console.log("Error message ALPHA VANTAGE", error);
 		});
 
 		this.getBlogPosts();
