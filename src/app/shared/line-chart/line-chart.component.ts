@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
+import { AlphavantageApiService } from '../services/alphavantage-api.service';
+
 import * as d3 from 'd3';
 
 export type DataType = {date: any, daily:any};
@@ -12,11 +14,14 @@ export type DataType = {date: any, daily:any};
 })
 export class LineChartComponent implements OnInit {
 
-  constructor(private elRef: ElementRef) {
+  constructor(
+      private elRef: ElementRef,
+      private stocksFromApi: AlphavantageApiService
+    ) {
       this.hostElement = this.elRef.nativeElement;
    }
 
-  @Input() stockData: any[]; // Gets stock data from main component
+  @Input() stockInfo: any; // Gets stock data from main component
 
   private lineChartData: any[]; // Create the data for the line chart
 
@@ -34,7 +39,7 @@ export class LineChartComponent implements OnInit {
               .range([this.margin.left, width - this.margin.right]);
 
     const y = d3.scaleLinear()
-              .domain([0, d3.max(this.lineChartData, d => d.daily["4. close"])])
+              .domain([d3.min(this.lineChartData, d => d.daily["4. close"]), d3.max(this.lineChartData, d => d.daily["4. close"])])
               .range([height - this.margin.bottom, this.margin.top]);
 
     const xAxis = g => g
@@ -49,13 +54,14 @@ export class LineChartComponent implements OnInit {
                   .attr("x", 3)
                   .attr("text-anchor", "start")
                   .attr("font-weight", "bold")
-                  .text(/*data.y*/"Weekley stock rate"));
+                  .text(/*data.y*/`Weekley stock rate for ${this.stockInfo.stock}`));
 
     const line = d3.line<DataType>()
               .curve(d3.curveStep)
               .defined(d => !isNaN(d.daily["4. close"]))
               .x(d => x(new Date(d.date)))
-              .y(d => y(d.daily["4. close"]));
+              .y(d => y(d.daily["4. close"]))
+              .curve(d3.curveMonotoneX); // .curve makes the line round
 
     this.svg = d3.select(this.hostElement).append("svg")
         .attr('height', '100%')
@@ -87,10 +93,14 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.lineChartData = this.stockData.splice(0, 7);
+      this.stocksFromApi.getStockData().subscribe(data => {
+        this.lineChartData = data.splice(0, 7)
+        this.removeExistingChartFromParent();
+        this.createLineChart();}
+        );
+      //this.lineChartData = this.stockData.splice(0, 7);
       console.log("*** LineChart Data", this.lineChartData);
-      this.removeExistingChartFromParent();
-      this.createLineChart();
+      
   }
 
 }

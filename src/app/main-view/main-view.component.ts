@@ -31,7 +31,7 @@ export class MainViewComponent implements OnInit {
 	constructor (
 		private fb: FormBuilder,
 		private coinsRateCryptoCompare: DataDisplayFromAPI,
-		private x: AlphavantageApiService,
+		private stocksFromApi: AlphavantageApiService,
 		private stackExchangeService: StackexchangeApiService,
 		private blogService: BlogApiService,
 		public dialog: MatDialog
@@ -108,7 +108,7 @@ export class MainViewComponent implements OnInit {
 			this.displayPopularStock.stock = searchBy.toUpperCase();
 		}
 
-		this.x.searchStock(searchBy, searchType).subscribe(data => {
+		this.stocksFromApi.searchStock(searchBy, searchType).subscribe(data => {
 			if (/*data[0] === "Stock was not found"*/Array.isArray(data)) {
 				setTimeout(() => {
 					this.subject.next(true);
@@ -128,6 +128,7 @@ export class MainViewComponent implements OnInit {
 						daily: data["Time Series (Daily)"][x]
 					}	
 				});
+				this.stocksFromApi.stockDataSubject.next(this.weeklyChartData);
 			}
 		}, error => {
 			console.log(error);
@@ -199,7 +200,7 @@ export class MainViewComponent implements OnInit {
 			//console.log(a["Time Series (5min)"]);
 			this.stockSymbol = a["Meta Data"]["2. Symbol"];
 		});*/
-		this.x.getDailyData(this.displayPopularStock.symbol).subscribe(data => {
+		this.stocksFromApi.getDailyData(this.displayPopularStock.symbol).subscribe(data => {
 			// Build the array for the weekly chart
 			this.weeklyChartData = Object.keys(data["Time Series (Daily)"]).map(x => {
 				return {
@@ -208,6 +209,7 @@ export class MainViewComponent implements OnInit {
 				}	
 			});
 			console.log("Weekly chart", this.weeklyChartData);
+			this.stocksFromApi.stockDataSubject.next(this.weeklyChartData);
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
 			//console.log(a["Meta Data"]["1. Information"]);
 			//console.log(a["Time Series (Daily)"]);
