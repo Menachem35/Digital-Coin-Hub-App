@@ -58,6 +58,12 @@
 		<app-bar-chart [chartData]="cryptosValuesWithoutBTC" *ngIf="cryptosValuesWithoutBTC"></app-bar-chart>
 	</div>
 	<div class="col-4"><!--  *ngIf="weeklyChartData" -->
+		<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+		<mat-menu #menu="matMenu">
+  			<button mat-menu-item (click)="changeRange('Weekly')">Weekley</button>
+  			<button mat-menu-item (click)="changeRange('Monthly')">Monthly</button>
+  			<button mat-menu-item (click)="changeRange('Year')">Yearly</button>
+		</mat-menu>
 		<app-line-chart [stockInfo]="displayPopularStock"></app-line-chart>
 	</div>
 </div>

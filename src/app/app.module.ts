@@ -34,7 +34,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { DisplayExchangeRatesComponent } from './display-exchange-rates/display-exchange-rates.component';
 import { NewsItemComponent } from './news/news-item/news-item.component';
 import { NewsArchiveComponent } from './news/news-archive/news-archive.component';
@@ -76,6 +78,7 @@ import { LineChartComponent } from './shared/line-chart/line-chart.component';
 	MatButtonModule,
 	MatDialogModule,
 	MatInputModule,
+	MatMenuModule,
 	MatProgressSpinnerModule
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],

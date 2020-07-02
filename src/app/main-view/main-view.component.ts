@@ -75,7 +75,33 @@ export class MainViewComponent implements OnInit {
         { stock: 'Apple', symbol: 'AAPL', price: '' },
 		{ stock: 'Microsoft', symbol: 'MSFT', price: '' },
 		{ stock: 'Tesla', symbol: 'TSLA', price: '' }
-    ];*/
+	];*/
+	
+	/**
+   	* 
+   	* @param range dates range for the stock line chart
+   	*/
+  	changeRange(range: string): void {
+		switch (range) {
+	  		case "weekely": {
+				//this.lineChartRange = 7;
+				break;
+	  		}
+	  		case "Monthly": {
+				//this.lineChartRange = 30;
+				break;
+	  		}
+	  		case "Year": {
+				//this.lineChartRange = 365;
+				break;
+	  		}
+	  		default: {
+				//this.lineChartRange = 7;
+				break;
+	  		}
+		}
+
+	}
 
 	buildStokForm(): void {
 		this.getStockForm = this.fb.group({
@@ -128,7 +154,10 @@ export class MainViewComponent implements OnInit {
 						daily: data["Time Series (Daily)"][x]
 					}	
 				});
-				this.stocksFromApi.stockDataSubject.next(this.weeklyChartData);
+				this.stocksFromApi.stockDataSubject.next({
+					stockData: this.weeklyChartData,
+					range: "Weekly"
+				})
 			}
 		}, error => {
 			console.log(error);
@@ -209,7 +238,10 @@ export class MainViewComponent implements OnInit {
 				}	
 			});
 			console.log("Weekly chart", this.weeklyChartData);
-			this.stocksFromApi.stockDataSubject.next(this.weeklyChartData);
+			this.stocksFromApi.stockDataSubject.next({
+				stockData: this.weeklyChartData,
+				range: "Weekly"
+			});
 			//console.log( a/*["Meta Data"]["2. Symbol"], "shoko"*/);
 			//console.log(a["Meta Data"]["1. Information"]);
 			//console.log(a["Time Series (Daily)"]);

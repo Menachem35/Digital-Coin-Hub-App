@@ -24,6 +24,7 @@ export class LineChartComponent implements OnInit {
   @Input() stockInfo: any; // Gets stock data from main component
 
   private lineChartData: any[]; // Create the data for the line chart
+  private lineChartRange: number = 7; // chart range. Default weekley
 
   hostElement: any; // Native element hosting the SVG container
   svg: any;
@@ -94,10 +95,10 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit(): void {
       this.stocksFromApi.getStockData().subscribe(data => {
-        this.lineChartData = data.splice(0, 7)
+        //this.lineChartData = data.stockData.splice(0, data["range"])
         this.removeExistingChartFromParent();
-        this.createLineChart();}
-        );
+        this.createLineChart();
+      });
       //this.lineChartData = this.stockData.splice(0, 7);
       console.log("*** LineChart Data", this.lineChartData);
       
