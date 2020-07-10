@@ -1,1 +1,19 @@
-<p>news-archive works!</p>
+<div class="row">
+    <div class="col-12">
+        <h2>News Archive:</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div *ngFor="let newsItem of blogPosts">
+            Date: {{newsItem.date}}
+            <br />
+            <a routerLink="/news/{{newsItem.slug}}">{{newsItem.title.rendered}}</a>
+            <br />
+            {{newsItem.excerpt.rendered}}
+            <br /><br />
+        </div>
+        
+    </div>
+</div>
+
