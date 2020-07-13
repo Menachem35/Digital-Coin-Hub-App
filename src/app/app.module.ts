@@ -36,6 +36,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
 
 import { DisplayExchangeRatesComponent } from './display-exchange-rates/display-exchange-rates.component';
 import { NewsItemComponent } from './news/news-item/news-item.component';
@@ -79,7 +80,8 @@ import { LineChartComponent } from './shared/line-chart/line-chart.component';
 	MatDialogModule,
 	MatInputModule,
 	MatMenuModule,
-	MatProgressSpinnerModule
+	MatProgressSpinnerModule,
+	MatTableModule
   ],
   providers: [DigitalCoinHubService, DataDisplayFromAPI],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
