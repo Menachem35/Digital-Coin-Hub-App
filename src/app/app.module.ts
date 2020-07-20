@@ -35,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 
@@ -80,6 +81,7 @@ import { LineChartComponent } from './shared/line-chart/line-chart.component';
 	MatDialogModule,
 	MatInputModule,
 	MatMenuModule,
+	MatPaginatorModule,
 	MatProgressSpinnerModule,
 	MatTableModule
   ],

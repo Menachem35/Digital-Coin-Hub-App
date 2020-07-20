@@ -25,9 +25,9 @@ export class BlogApiService {
    */
   getDatafromBlog(numberOfPosts?: number): Observable<any[]>{
       if (numberOfPosts) {
-        return this._http.get<any[]>(`http://digitalcoinhub.io/blog/wp-json/wp/v2/posts/?per_page=${numberOfPosts}`);
+        return this._http.get<any[]>(`https://digitalcoinhub.io/blog/wp-json/wp/v2/posts/?per_page=${numberOfPosts}`);
       } else {
-        return this._http.get<any[]>(`http://digitalcoinhub.io/blog/wp-json/wp/v2/posts/`);
+        return this._http.get<any[]>(`https://digitalcoinhub.io/blog/wp-json/wp/v2/posts/`);
       }
       
   }
