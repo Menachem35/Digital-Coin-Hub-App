@@ -1,0 +1,15 @@
+.mat-column-date {
+    width: 10%;
+}
+
+@media (min-width: 901px) and (max-width: 1400px) { 
+    .mat-column-date {
+        width: 15%;
+    }
+}
+
+@media screen and ( max-width: 900px ) {
+    .mat-column-date {
+        width: 25%;
+    }
+}
