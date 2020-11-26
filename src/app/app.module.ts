@@ -69,7 +69,7 @@ import { LineChartComponent } from './shared/line-chart/line-chart.component';
 	LineChartComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
 	AppRoutingModule,
 	HttpClientModule,
 	FormsModule,
