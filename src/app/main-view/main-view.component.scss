@@ -11,7 +11,7 @@
 
 .headerCoinsRates {
 	background-color: rgba(56, 93, 127, 0.6);
-	height: 60px;
+	min-height: 60px;
 }
 
 
@@ -58,6 +58,7 @@ input {
 	display: -webkit-flex;
 	display: flex;
   
+  flex-wrap: wrap;
 	flex-direction:row;
 }
 
@@ -93,6 +94,10 @@ input {
 @media (max-width: 750px) {
   #crypto-container {
     flex-direction: column;
+
+    width: 85px;
+    margin: 2px;
+    background-color: tomato;
   }
 
   .questionWrapper {
